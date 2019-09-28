@@ -1,0 +1,15 @@
+D:\Projects\Jazirah\Pharmacy\bin\Debug\Pharmacy.dll
+D:\Projects\Jazirah\Pharmacy\bin\Debug\Pharmacy.pdb
+D:\Projects\Jazirah\Pharmacy\bin\Debug\Pharmacy.xml
+D:\Projects\Jazirah\Pharmacy\bin\Debug\DCL.dll
+D:\Projects\Jazirah\Pharmacy\bin\Debug\DCL.pdb
+D:\Projects\Jazirah\Pharmacy\bin\Debug\DCL.xml
+D:\Projects\Jazirah\Pharmacy\obj\Debug\Pharmacy.vbprojResolveAssemblyReference.cache
+D:\Projects\Jazirah\Pharmacy\obj\Debug\Pharmacy.Resources.resources
+D:\Projects\Jazirah\Pharmacy\obj\Debug\Pharmacy.vbproj.GenerateResource.Cache
+D:\Projects\Jazirah\Pharmacy\obj\Debug\Pharmacy.dll
+D:\Projects\Jazirah\Pharmacy\obj\Debug\Pharmacy.xml
+D:\Projects\Jazirah\Pharmacy\obj\Debug\Pharmacy.pdb
+D:\Projects\Jazirah\Pharmacy\bin\Debug\Share.dll
+D:\Projects\Jazirah\Pharmacy\bin\Debug\Share.pdb
+D:\Projects\Jazirah\Pharmacy\bin\Debug\Share.xml

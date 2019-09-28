@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Requests>
+  <Cancel_Invoice date="2019-09-14" time="10:10:10" user="SoftNet" status="1">
+    <Request>1</Request>
+    <Transaction>112233</Transaction>
+    <Reason>Expired</Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-15" time="12:25:50" user="SoftNet" status="1">
+    <Request>2</Request>
+    <Transaction>3371887</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-15" time="15:10:46" user="SoftNet" status="1">
+    <Request>3</Request>
+    <Transaction>3371887</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-15" time="15:15:52" user="SoftNet" status="1">
+    <Request>4</Request>
+    <Transaction>3371887</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-15" time="15:16:25" user="SoftNet" status="1">
+    <Request>5</Request>
+    <Transaction>3371887</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-15" time="15:22:45" user="SoftNet" status="1">
+    <Request>6</Request>
+    <Transaction>3371887</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-15" time="15:23:22" user="SoftNet" status="1">
+    <Request>7</Request>
+    <Transaction>3371887</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-15" time="18:20:02" user="SoftNet" status="1">
+    <Request>8</Request>
+    <Transaction>3371886</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-16" time="08:56:26" user="SoftNet" status="2">
+    <Request>9</Request>
+    <Transaction>3371899</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-16" time="09:11:34" user="SoftNet" status="2">
+    <Request>10</Request>
+    <Transaction>3371899</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-16" time="09:21:18" user="SoftNet" status="2">
+    <Request>11</Request>
+    <Transaction>3371899</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-16" time="09:28:33" user="SoftNet" status="2">
+    <Request>12</Request>
+    <Transaction>3371899</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-16" time="09:35:22" user="" status="2">
+    <Request>13</Request>
+    <Transaction>3371899</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-16" time="09:40:50" user="abd" status="2">
+    <Request>14</Request>
+    <Transaction>3371899</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-16" time="09:54:55" user="abd" status="2">
+    <Request>15</Request>
+    <Transaction>3371899</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-16" time="09:57:13" user="abd" status="2">
+    <Request>16</Request>
+    <Transaction>3371899</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Return_Items date="2019-09-17" time="10:09:38" user="abd" status="2">
+    <Request>1</Request>
+    <Transaction>3371902</Transaction>
+    <Items>2,3</Items>
+    <Reason>
+    </Reason>
+  </Return_Items>
+  <Cancel_Invoice date="2019-09-17" time="11:12:24" user="abd" status="1">
+    <Request>17</Request>
+    <Transaction>3371903</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-17" time="11:27:39" user="abd" status="1">
+    <Request>18</Request>
+    <Transaction>3371904</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-17" time="11:30:24" user="abd" status="1">
+    <Request>19</Request>
+    <Transaction>3371905</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Cancel_Invoice date="2019-09-17" time="11:36:43" user="abd" status="2">
+    <Request>20</Request>
+    <Transaction>3371906</Transaction>
+    <Reason>
+    </Reason>
+  </Cancel_Invoice>
+  <Return_Items date="2019-09-17" time="11:44:08" user="abd" status="1">
+    <Request>2</Request>
+    <Transaction>3371907</Transaction>
+    <Items>2,3</Items>
+    <Reason>
+    </Reason>
+  </Return_Items>
+  <Return_Items date="2019-09-17" time="12:52:38" user="abd" status="1">
+    <Request>3</Request>
+    <Transaction>3371909</Transaction>
+    <Items>2,3</Items>
+    <Reason>
+    </Reason>
+  </Return_Items>
+  <Return_Items date="2019-09-17" time="12:55:36" user="abd" status="1">
+    <Request>4</Request>
+    <Transaction>3371911</Transaction>
+    <Items>2,3</Items>
+    <Reason>
+    </Reason>
+  </Return_Items>
+  <Return_Items date="2019-09-17" time="16:41:48" user="abd" status="1">
+    <Request>5</Request>
+    <Transaction>3371913</Transaction>
+    <Items>1,2</Items>
+    <Reason>
+    </Reason>
+  </Return_Items>
+</Requests>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Privileges>
+  <Cancel_Invoice>
+    <User>SoftNet</User>
+    <User>ahmed</User>
+  </Cancel_Invoice>
+  <Return_Items>
+    <User>SoftNet</User>
+    <User>ahmed</User>
+  </Return_Items>
+</Privileges>
