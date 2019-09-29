@@ -144,6 +144,7 @@ Public Class Orders
         If ds.Tables(2).Rows.Count > 0 Then strPatient_Cash = ds.Tables(2).Rows(0).Item("PatientName").ToString Else strPatient_Cash = ""
         If ds.Tables(3).Rows.Count > 0 Then strDepartment_Cash = ds.Tables(3).Rows(0).Item("strDepartment" & DataLang).ToString Else strDepartment_Cash = ""
     End Sub
+
     Public Function viewInfo(ByVal lngTransaction As Long) As String
         Dim ds As DataSet
         Dim DataLang As String
@@ -498,14 +499,14 @@ Public Class Orders
                         dsCash = dcl.GetDS("SELECT * FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink INNER JOIN Stock_Items AS I ON XI.strItem=I.strItem WHERE X.lngTransaction=" & lngTransaction)
                         For I = 0 To dsCash.Tables(0).Rows.Count - 1
                             'cashItems = cashItems & "<tr id=""tr_" & rowCounter & """ class=""Ctr_' + curTab + '""><td style=""width:32px;""><input type=""hidden"" name=""barcode_C"" value=""" & dsCash.Tables(0).Rows(I).Item("strBarCode") & """/><input type=""hidden"" name=""dose_C"" value=""""/><input type=""hidden"" name=""item_C"" class=""item_C"" value=""" & dsCash.Tables(0).Rows(I).Item("strItem") & """/></td><td style=""width:70px;"" class=""dynCash"">" & dsCash.Tables(0).Rows(I).Item("strItem") & "</td><td class=""itemName width-150"" title=""" & dsCash.Tables(0).Rows(I).Item("strItem" & DataLang) & """>" & dsCash.Tables(0).Rows(I).Item("strItem" & DataLang) & "</td><td style=""width:100px;"" class=""dynCash red"">" & CDate(dsCash.Tables(0).Rows(I).Item("dateExpiry")).ToString(strDateFormat) & "<input type=""hidden"" name=""expire_C"" value=""" & CDate(dsCash.Tables(0).Rows(I).Item("dateExpiry")).ToString("yyyy-MM-dd") & """/></td><td style=""width:80px;"" class=""dynCash"">" & Math.Round(dsCash.Tables(0).Rows(I).Item("curBasePrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""price"" name=""price_C"" class=""price_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curBasePrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" name=""service_C"" value=""" & dsCash.Tables(0).Rows(I).Item("intService") & """/><input type=""hidden"" name=""warehouse_C"" value=""" & dsCash.Tables(0).Rows(I).Item("byteWarehouse") & """/></td><td style=""width:80px;"" class=""dynCash"">" & Math.Round(dsCash.Tables(0).Rows(I).Item("curUnitPrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" name=""percent_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curDiscount"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" id=""discount"" name=""discount_C"" class=""discount_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curUnitPrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/></td><td style=""width:44px;"">" & Math.Round(dsCash.Tables(0).Rows(I).Item("curQuantity"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""quantity"" name=""quantity_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curQuantity"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" name=""unit_C"" value=""" & dsCash.Tables(0).Rows(I).Item("byteUnit") & """/></td><td style=""width:80px;"">" & Math.Round(dsCash.Tables(0).Rows(I).Item("curCoverage"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""total"" name=""total_C"" class=""total_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curCoverage"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" id=""coverage"" class=""coverage"" value=""" & Math.Round(0, byteCurrencyRound, MidpointRounding.AwayFromZero) & """/></td><td class=""text-nowrap""><a href=""#"" class=""tag btn-blue-grey tag-xs"">" & btnPrint & "</a> <a href=""javascript:"" onclick=""javascript:removeCItems(this);removeThis(this);calculateCash(curTab);"" class=""tag btn-red btn-lighten-3 tag-xs"">" & btnDelete & "</a></td></tr>"
-                            cashItems = cashItems & createItemRow(lngTransaction, rowCounter, True, "", dsCash.Tables(0).Rows(I).Item("strBarCode"), dsCash.Tables(0).Rows(I).Item("strItem"), dsCash.Tables(0).Rows(I).Item("strItem" & DataLang), dsCash.Tables(0).Rows(I).Item("byteUnit"), dsCash.Tables(0).Rows(I).Item("dateExpiry"), dsCash.Tables(0).Rows(I).Item("curBasePrice"), dsCash.Tables(0).Rows(I).Item("curDiscount"), dsCash.Tables(0).Rows(I).Item("curQuantity"), dsCash.Tables(0).Rows(I).Item("curBaseDiscount"), dsCash.Tables(0).Rows(I).Item("curCoverage"), 0, dsCash.Tables(0).Rows(I).Item("intService"), dsCash.Tables(0).Rows(I).Item("byteWarehouse"), "", True)
+                            cashItems = cashItems & createItemRow(lngTransaction, rowCounter, True, "", dsCash.Tables(0).Rows(I).Item("strBarCode"), dsCash.Tables(0).Rows(I).Item("strItem"), dsCash.Tables(0).Rows(I).Item("strItem" & DataLang), dsCash.Tables(0).Rows(I).Item("byteUnit"), dsCash.Tables(0).Rows(I).Item("dateExpiry"), dsCash.Tables(0).Rows(I).Item("curBasePrice"), dsCash.Tables(0).Rows(I).Item("curDiscount"), dsCash.Tables(0).Rows(I).Item("curQuantity"), dsCash.Tables(0).Rows(I).Item("curBaseDiscount"), dsCash.Tables(0).Rows(I).Item("curCoverage"), dsCash.Tables(0).Rows(I).Item("curVAT"), dsCash.Tables(0).Rows(I).Item("intService"), dsCash.Tables(0).Rows(I).Item("byteWarehouse"), "", True)
                         Next
                     Else
                         InsuranceInvoiceNo = ds.Tables(0).Rows(0).Item("InvoiceNo").ToString
                         dsInsurance = dcl.GetDS("SELECT * FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink INNER JOIN Stock_Items AS I ON XI.strItem=I.strItem WHERE X.lngTransaction=" & lngTransaction)
                         For I = 0 To dsInsurance.Tables(0).Rows.Count - 1
                             'insuranceItems = insuranceItems & "<tr id=""tr_" & rowCounter & """ class=""Itr""><td style=""width:32px;""><input type=""hidden"" name=""barcode_I"" value=""" & dsInsurance.Tables(0).Rows(I).Item("strBarCode") & """/><input type=""hidden"" name=""dose_I"" value=""""/><input type=""hidden"" name=""item_I"" class=""item_I"" value=""" & dsInsurance.Tables(0).Rows(I).Item("strItem") & """/></td><td style=""width:70px;"" class=""dynInsurance"">" & dsInsurance.Tables(0).Rows(I).Item("strItem") & "</td><td class=""itemName width-150"" title=""" & dsInsurance.Tables(0).Rows(I).Item("strItem" & DataLang) & """>" & dsInsurance.Tables(0).Rows(I).Item("strItem" & DataLang) & "</td><td style=""width:100px;"" class=""dynInsurance red"">" & CDate(dsInsurance.Tables(0).Rows(I).Item("dateExpiry")).ToString(strDateFormat) & "<input type=""hidden"" name=""expire_I"" value=""" & CDate(dsInsurance.Tables(0).Rows(I).Item("dateExpiry")).ToString("yyyy-MM-dd") & """/></td><td style=""width:80px;"" class=""dynInsurance"">" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curBasePrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""price"" name=""price_I"" class=""price_I"" value=""" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curBasePrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" name=""service_I"" value=""" & dsInsurance.Tables(0).Rows(I).Item("intService") & """/><input type=""hidden"" name=""warehouse_I"" value=""" & dsInsurance.Tables(0).Rows(I).Item("byteWarehouse") & """/></td><td style=""width:80px;"" class=""dynInsurance"">" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curUnitPrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" name=""percent_I"" value=""" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curDiscount"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" id=""discount"" name=""discount_I"" class=""discount_I"" value=""" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curUnitPrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/></td><td style=""width:44px;"">" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curQuantity"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""quantity"" name=""quantity_I"" value=""" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curQuantity"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" name=""unit_I"" value=""" & dsInsurance.Tables(0).Rows(I).Item("byteUnit") & """/></td><td style=""width:80px;"">" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curCoverage"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""total"" name=""total_I"" class=""total_I"" value=""" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curCoverage"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" id=""coverage"" class=""coverage"" value=""" & Math.Round(dsInsurance.Tables(0).Rows(I).Item("curUnitPrice") - dsInsurance.Tables(0).Rows(I).Item("curCoverage"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/></td><td class=""text-nowrap""><a href=""#"" class=""tag btn-blue-grey tag-xs"">" & btnPrint & "</a> <a href=""javascript:"" onclick=""javascript:removeIItems(this);removeThis(this);calculateInsurance(curTab);"" class=""tag btn-red btn-lighten-3 tag-xs"">" & btnDelete & "</a></td></tr>"
-                            insuranceItems = insuranceItems & createItemRow(lngTransaction, rowCounter, False, "", dsInsurance.Tables(0).Rows(I).Item("strBarCode"), dsInsurance.Tables(0).Rows(I).Item("strItem"), dsInsurance.Tables(0).Rows(I).Item("strItem" & DataLang), dsInsurance.Tables(0).Rows(I).Item("byteUnit"), dsInsurance.Tables(0).Rows(I).Item("dateExpiry"), dsInsurance.Tables(0).Rows(I).Item("curBasePrice"), dsInsurance.Tables(0).Rows(I).Item("curDiscount"), dsInsurance.Tables(0).Rows(I).Item("curQuantity"), dsInsurance.Tables(0).Rows(I).Item("curBaseDiscount"), dsInsurance.Tables(0).Rows(I).Item("curCoverage"), 0, dsInsurance.Tables(0).Rows(I).Item("intService"), dsInsurance.Tables(0).Rows(I).Item("byteWarehouse"), "", True)
+                            insuranceItems = insuranceItems & createItemRow(lngTransaction, rowCounter, False, "", dsInsurance.Tables(0).Rows(I).Item("strBarCode"), dsInsurance.Tables(0).Rows(I).Item("strItem"), dsInsurance.Tables(0).Rows(I).Item("strItem" & DataLang), dsInsurance.Tables(0).Rows(I).Item("byteUnit"), dsInsurance.Tables(0).Rows(I).Item("dateExpiry"), dsInsurance.Tables(0).Rows(I).Item("curBasePrice"), dsInsurance.Tables(0).Rows(I).Item("curDiscount"), dsInsurance.Tables(0).Rows(I).Item("curQuantity"), dsInsurance.Tables(0).Rows(I).Item("curBaseDiscount"), dsInsurance.Tables(0).Rows(I).Item("curCoverage"), dsInsurance.Tables(0).Rows(I).Item("curVAT"), dsInsurance.Tables(0).Rows(I).Item("intService"), dsInsurance.Tables(0).Rows(I).Item("byteWarehouse"), "", True)
                         Next
                         If bCreatCash = True Then
                             Dim dsTemp As DataSet = dcl.GetDS("SELECT * FROM Stock_Trans WHERE strReference='" & InvoiceNo & "' AND lngPatient=" & PatientNo & " AND bSubCash=1 AND byteBase=50")
@@ -514,7 +515,7 @@ Public Class Orders
                                 dsCash = dcl.GetDS("SELECT * FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink INNER JOIN Stock_Items AS I ON XI.strItem=I.strItem WHERE X.lngTransaction=" & dsTemp.Tables(0).Rows(0).Item("lngTransaction"))
                                 For I = 0 To dsCash.Tables(0).Rows.Count - 1
                                     'cashItems = cashItems & "<tr id=""tr_" & rowCounter & """ class=""Ctr""><td style=""width:32px;""><input type=""hidden"" name=""barcode_C"" value=""" & dsCash.Tables(0).Rows(I).Item("strBarCode") & """/><input type=""hidden"" name=""dose_C"" value=""""/><input type=""hidden"" name=""item_C"" class=""item_C"" value=""" & dsCash.Tables(0).Rows(I).Item("strItem") & """/></td><td style=""width:70px;"" class=""dynCash"">" & dsCash.Tables(0).Rows(I).Item("strItem") & "</td><td class=""itemName width-150"" title=""" & dsCash.Tables(0).Rows(I).Item("strItem" & DataLang) & """>" & dsCash.Tables(0).Rows(I).Item("strItem" & DataLang) & "</td><td style=""width:100px;"" class=""dynCash red"">" & CDate(dsCash.Tables(0).Rows(I).Item("dateExpiry")).ToString(strDateFormat) & "<input type=""hidden"" name=""expire_C"" value=""" & CDate(dsCash.Tables(0).Rows(I).Item("dateExpiry")).ToString("yyyy-MM-dd") & """/></td><td style=""width:80px;"" class=""dynCash"">" & Math.Round(dsCash.Tables(0).Rows(I).Item("curBasePrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""price"" name=""price_C"" class=""price_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curBasePrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" name=""service_C"" value=""" & dsCash.Tables(0).Rows(I).Item("intService") & """/><input type=""hidden"" name=""warehouse_C"" value=""" & dsCash.Tables(0).Rows(I).Item("byteWarehouse") & """/></td><td style=""width:80px;"" class=""dynCash"">" & Math.Round(dsCash.Tables(0).Rows(I).Item("curUnitPrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" name=""percent_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curDiscount"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" id=""discount"" name=""discount_C"" class=""discount_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curUnitPrice"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/></td><td style=""width:44px;"">" & Math.Round(dsCash.Tables(0).Rows(I).Item("curQuantity"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""quantity"" name=""quantity_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curQuantity"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" name=""unit_C"" value=""" & dsCash.Tables(0).Rows(I).Item("byteUnit") & """/></td><td style=""width:80px;"">" & Math.Round(dsCash.Tables(0).Rows(I).Item("curCoverage"), byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""total"" name=""total_C"" class=""total_C"" value=""" & Math.Round(dsCash.Tables(0).Rows(I).Item("curCoverage"), byteCurrencyRound, MidpointRounding.AwayFromZero) & """/><input type=""hidden"" id=""coverage"" class=""coverage"" value=""" & Math.Round(0, byteCurrencyRound, MidpointRounding.AwayFromZero) & """/></td><td class=""text-nowrap""><a href=""#"" class=""tag btn-blue-grey tag-xs"">" & btnPrint & "</a> <a href=""javascript:"" onclick=""javascript:removeCItems(this);removeThis(this);calculateCash(curTab);"" class=""tag btn-red btn-lighten-3 tag-xs"">" & btnDelete & "</a></td></tr>"
-                                    cashItems = cashItems & createItemRow(lngTransaction, rowCounter, True, "", dsCash.Tables(0).Rows(I).Item("strBarCode"), dsCash.Tables(0).Rows(I).Item("strItem"), dsCash.Tables(0).Rows(I).Item("strItem" & DataLang), dsCash.Tables(0).Rows(I).Item("byteUnit"), dsCash.Tables(0).Rows(I).Item("dateExpiry"), dsCash.Tables(0).Rows(I).Item("curBasePrice"), dsCash.Tables(0).Rows(I).Item("curDiscount"), dsCash.Tables(0).Rows(I).Item("curQuantity"), dsCash.Tables(0).Rows(I).Item("curBaseDiscount"), dsCash.Tables(0).Rows(I).Item("curCoverage"), 0, dsCash.Tables(0).Rows(I).Item("intService"), dsCash.Tables(0).Rows(I).Item("byteWarehouse"), "", True)
+                                    cashItems = cashItems & createItemRow(lngTransaction, rowCounter, True, "", dsCash.Tables(0).Rows(I).Item("strBarCode"), dsCash.Tables(0).Rows(I).Item("strItem"), dsCash.Tables(0).Rows(I).Item("strItem" & DataLang), dsCash.Tables(0).Rows(I).Item("byteUnit"), dsCash.Tables(0).Rows(I).Item("dateExpiry"), dsCash.Tables(0).Rows(I).Item("curBasePrice"), dsCash.Tables(0).Rows(I).Item("curDiscount"), dsCash.Tables(0).Rows(I).Item("curQuantity"), dsCash.Tables(0).Rows(I).Item("curBaseDiscount"), dsCash.Tables(0).Rows(I).Item("curCoverage"), dsCash.Tables(0).Rows(I).Item("curVAT"), dsCash.Tables(0).Rows(I).Item("intService"), dsCash.Tables(0).Rows(I).Item("byteWarehouse"), "", True)
                                 Next
                             End If
                         End If
@@ -692,7 +693,7 @@ Public Class Orders
         End If
 
         ''>6 add barcode input
-        Dim barcode As String = "<div class=""row""><div class=""col-md-12"" style=""margin-top:-20px; margin-bottom:-10px;""><div class=""position-relative has-icon-left""><input type=""text"" class=""form-control round  border-primary text-md-center"" id=""txtBarcode"" placeholder=""" & plcBarcode & """ /><div class=""form-control-position""><i class=""icon-barcode""></i></div></div></div></div>"
+        Dim barcode As String = "<div class=""row pl-1 pr-1""><div class=""col-md-12"" style=""margin: -20px 0 -10px 0;""><div class=""position-relative has-icon-left""><input type=""text"" class=""form-control round  border-primary text-md-center"" id=""txtBarcode"" placeholder=""" & plcBarcode & """ /><div class=""form-control-position""><i class=""icon-barcode""></i></div></div></div></div>"
 
         ''>7 add buttons
         Dim sendFunction As String
@@ -830,11 +831,28 @@ Public Class Orders
         ''==>4.2 hidden inputs
         tabContent.Append("<input type=""hidden"" id=""trans" & tabCounter & """ name=""lngTransaction"" value=""" & lngTransaction & """ /><input type=""hidden"" id=""counter" & tabCounter & """ value=""0"" /><input type=""hidden"" id=""coveredCash" & tabCounter & """ name=""coveredCash"" value=""0"" /><input type=""hidden"" id=""deductionCash" & tabCounter & """ name=""deductionCash"" value=""0"" /><input type=""hidden"" id=""nonCoveredCash" & tabCounter & """ name=""nonCoveredCash"" value=""0"" /><input type=""hidden"" id=""basePrice" & tabCounter & """ value=""0"" /><input type=""hidden"" id=""cashOnly" & tabCounter & """ name=""cashOnly"" value=""" & CInt(CashOnly) & """ /><input type=""hidden"" id=""suspend" & tabCounter & """ value=""" & suspend & """ /><input type=""hidden"" id=""items_I_" & tabCounter & """ value="""" /><input type=""hidden"" id=""items_C_" & tabCounter & """ value="""" /><input type=""hidden"" id=""Limit_" & tabCounter & """ value=""" & MaxP & """ /><input type=""hidden"" id=""CICov_" & tabCounter & """ value=""" & CICov & """ /><input type=""hidden"" id=""MICov_" & tabCounter & """ value=""" & MICov & """ /><input type=""hidden"" id=""coveredVat" & tabCounter & """ name=""coveredVat"" value=""0"" /><input type=""hidden"" id=""deductionVat" & tabCounter & """ name=""deductionVat"" value=""0"" /><input type=""hidden"" id=""nonCoveredVat" & tabCounter & """ name=""nonCoveredVat"" value=""0"" />")
         ''==>4.3 header start
-        tabContent.Append("<div class=""row""><div class=""col-md-12""><div class=""card""><div class=""card-body collapse in""><div class=""card-block"" style=""padding:10px; font-size:14px;"">")
-        tabContent.Append("<div class=""col-md-5 m-0 p-0""><div class=""col-md-12 m-0 p-0""><div class=""col-md-3 text-md-right text-bold-900"">" & lblPatient & ":</div><div class=""col-md-9 teal"">" & PatientName & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-3 text-md-right text-bold-900"">" & lblDoctor & ":</div><div class=""col-md-9 red"">" & DoctorName & "</div></div></div>")
-        tabContent.Append("<div class=""col-md-3 m-0 p-0""><div class=""col-md-12 m-0 p-0""><div class=""col-md-6 text-md-right text-bold-900"">" & lblPharmacist & ":</div><div class=""col-md-6 teal"">" & strUserName & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-6 text-md-right text-bold-900"">" & lblDate & ":</div><div class=""col-md-6 red"">" & CDate(InvoiceDate).ToString(strDateFormat) & "</div></div></div>")
-        tabContent.Append("<div class=""col-md-4 m-0 p-0""><div class=""col-md-12 p-0""><div class=""col-md-7 text-md-right text-bold-900"">" & lblTotalCash & ":</div><div class=""col-md-5 teal""><span class=""tag tag-sm tag-primary"" style=""width:75px;"" id=""totalCash" & tabCounter & """>0.00</span><span class=""tag tag-sm tag-primary"" style=""width:25px;"" id=""totalVat" & tabCounter & """>0.00</span></div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-7 text-md-right text-bold-900"">" & lblTotalCovered & ":</div><div class=""col-md-5 red""><span class=""tag tag-sm tag-default"" style=""width:75px;"" id=""totalCovered" & tabCounter & """>0.00</span><span class=""tag tag-sm tag-default"" style=""width:25px;"" id=""totalCoveredVat" & tabCounter & """>0.00</span></div></div></div>")
-        tabContent.Append("</div></div></div></div></div>")
+        tabContent.Append("<div class=""row border-grey lighten-0 m-0 mb-1 font-small-3 box-shadow-1"" style=""padding:5px;"">")
+        tabContent.Append("<div class=""col-md-5 m-0 p-0"">")
+        tabContent.Append("<div class=""col-md-2 text-md-right text-bold-900"">" & lblPatient & ":</div><div class=""col-md-10 teal"">" & PatientName & "</div>")
+        tabContent.Append("<div class=""col-md-2 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblDoctor & ":</div><div class=""col-md-10 red"" style=""margin-top:5px"">" & DoctorName & "</div>")
+        tabContent.Append("</div>")
+        tabContent.Append("<div class=""col-md-3 m-0 p-0"">")
+        tabContent.Append("<div class=""col-md-6 text-md-right text-bold-900"">" & lblDate & ":</div><div class=""col-md-6 red"">" & CDate(InvoiceDate).ToString(strDateFormat) & "</div>")
+        tabContent.Append("<div class=""col-md-6 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblPharmacist & ":</div><div class=""col-md-6 teal"" style=""margin-top:5px"">" & strUserName & "</div>")
+        tabContent.Append("</div>")
+        If TaxEnabled = True Then
+            tabContent.Append("<div class=""col-md-4 m-0 p-0"">")
+            tabContent.Append("<div class=""col-md-5 text-md-right text-bold-900"">" & lblTotalCash & ":</div><div class=""col-md-7 teal""><span class=""tag tag-sm tag-primary"" style=""width:60px;"" id=""totalCash" & tabCounter & """>0.00</span><span class=""tag tag-sm tag-primary"" style=""width:45px; margin-left:2px; margin-right:2px;"" id=""totalVat" & tabCounter & """>0.00</span></div>")
+            tabContent.Append("<div class=""col-md-5 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblTotalCovered & ":</div><div class=""col-md-7 red"" style=""margin-top:5px""><span class=""tag tag-sm tag-default"" style=""width:60px;"" id=""totalCovered" & tabCounter & """>0.00</span><span class=""tag tag-sm tag-default"" style=""width:45px; margin-left:2px; margin-right:2px;"" id=""totalCoveredVat" & tabCounter & """>0.00</span></div>")
+            tabContent.Append("</div>")
+        Else
+            tabContent.Append("<div class=""col-md-4 m-0 p-0"">")
+            tabContent.Append("<div class=""col-md-5 text-md-right text-bold-900"">" & lblTotalCash & ":</div><div class=""col-md-7 teal""><span class=""tag tag-sm tag-primary"" style=""width:80px;"" id=""totalCash" & tabCounter & """>0.00</span><span  style=""display:none;"" id=""totalVat" & tabCounter & """>0.00</span></div>")
+            tabContent.Append("<div class=""col-md-5 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblTotalCovered & ":</div><div class=""col-md-7 red"" style=""margin-top:5px""><span class=""tag tag-sm tag-default"" style=""width:80px;"" id=""totalCovered" & tabCounter & """>0.00</span><span  style=""display:none;"" id=""totalCoveredVat" & tabCounter & """>0.00</span></div>")
+            tabContent.Append("</div>")
+        End If
+        tabContent.Append("</div>")
+
         ''==>4.3 tables start
         tabContent.Append(createItemsTables(tabCounter, CompanyName, InsuranceInvoiceNo, CashInvoiceNo, InsuranceRows, CashRows, CashOnly))
         tabContent.Append("</form></div>")
@@ -845,7 +863,7 @@ Public Class Orders
         Dim str As New StringBuilder("")
 
         Dim InsuranceInvoice, CashInvoice, Invoice As String
-        Dim colBarcode, colItemName, colItemNo, colAmount, colExpireDate, colUnitPrice, colDiscount, colTotal As String
+        Dim colBarcode, colItemName, colItemNo, colAmount, colExpireDate, colUnitPrice, colDiscount, colTotal, colTax As String
         Dim InsuranceExtend, CashExtend As String
         Dim CashBtnExtend As String = ""
         Dim CashCompany As String
@@ -863,6 +881,7 @@ Public Class Orders
                 colUnitPrice = "السعر"
                 colDiscount = "الخصم"
                 colTotal = "مجموع"
+                colTax = "الضريبة"
                 InsuranceExtend = "right"
                 CashExtend = "left"
             Case Else
@@ -878,9 +897,21 @@ Public Class Orders
                 colUnitPrice = "Price"
                 colDiscount = "Discount"
                 colTotal = "Total"
+                colTax = "Tax"
                 InsuranceExtend = "left"
                 CashExtend = "right"
         End Select
+
+        Dim TaxHeader_C As String = ""
+        Dim TaxHeader_I As String = ""
+        Dim TaxFooter_C As String = ""
+        Dim TaxFooter_I As String = ""
+        If TaxEnabled = True Then
+            TaxHeader_I = "<th style=""width:80px;"" class=""dynInsurance"">" & colTax & "</th>"
+            TaxHeader_C = "<th style=""width:80px;"" class=""dynCash"">" & colTax & "</th>"
+            TaxFooter_I = "<th style=""width:80px;"" class=""dynInsurance"" id=""vat_I_" & Identifier & """>0.00</th>"
+            TaxFooter_C = "<th style=""width:80px;"" class=""dynCash"" id=""vat_C_" & Identifier & """>0.00</th>"
+        End If
 
         Dim ds As DataSet
         ds = dcl.GetDS("SELECT * FROM Hw_Contacts WHERE lngContact=27")
@@ -892,15 +923,15 @@ Public Class Orders
         If CashOnly = False Then
             'Insurance
             str.Append("<div class=""col-md-6 insurance" & Identifier & """ id=""divInsurance" & Identifier & """><div class=""card border-" & InsuranceColor & " border-lighten-3""><div class=""card-header""><h4 class=""card-title " & InsuranceColor & " lighten-3""><span class=""icon-clipboard4 text-muted""></span> " & InsuranceInvoice & "</h4><div class=""heading-elements""><span class=""font-small-2 text-muted"">" & Invoice & ": (<span class=""orange"">" & InsuranceInvoiceNo & "</span>) </span><span class=""font-small-2 tag tag-xs tag-info dynInsurance company"" title=""" & InsuranceCompany & """>" & InsuranceCompany & "</span></div></div>")
-            str.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynInsurance"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:100px;"" class=""dynInsurance"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th><th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table table-bordered mb-0 mt-0"" id=""tblInsurance" & Identifier & """><tbody>")
+            str.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynInsurance"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th>" & TaxHeader_I & "<th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table table-bordered mb-0 mt-0"" id=""tblInsurance" & Identifier & """><tbody>")
             str.Append(InsuranceRows)
-            str.Append("</tbody></table></div><table class=""table table-bordered mb-0 mt-0""><thead><tr><th style=""width:32px;""><a class=""cursor-pointer " & InsuranceColor & " lighten-3"" href=""javascript:changeToInsurance(" & Identifier & ")""><i id=""btnInsuranceIcon"" class=""icon-circle-" & InsuranceExtend & """></i></a></th><td style=""width:70px;"" class=""dynInsurance""></td><th class=""itemName width-150""></th><th style=""width:100px;"" class=""dynInsurance""></th><th style=""width:80px;"" class=""dynInsurance"" id=""price_I_" & Identifier & """>0.00</th><th style=""width:80px;"" class=""dynInsurance""></th><th style=""width:44px;""></th><th style=""width:80px;"" id=""total_I_" & Identifier & """>0.00</th><th><span class=""dynInsurance grey"" id=""covInfo" & Identifier & """></span></th></tr></thead></table></div></div></div></div>")
+            str.Append("</tbody></table></div><table class=""table table-bordered mb-0 mt-0""><thead><tr><th style=""width:32px;""><a class=""cursor-pointer " & InsuranceColor & " lighten-3"" href=""javascript:changeToInsurance(" & Identifier & ")""><i id=""btnInsuranceIcon"" class=""icon-circle-" & InsuranceExtend & """></i></a></th><td style=""width:70px;"" class=""dynInsurance""></td><th class=""itemName width-150""></th><th style=""width:80px;"" class=""dynInsurance""></th><th style=""width:80px;"" class=""dynInsurance"" id=""price_I_" & Identifier & """>0.00</th><th style=""width:80px;"" class=""dynInsurance""></th><th style=""width:44px;""></th><th style=""width:80px;"" id=""total_I_" & Identifier & """>0.00</th>" & TaxFooter_I & "<th><span class=""dynInsurance grey"" id=""covInfo" & Identifier & """></span></th></tr></thead></table></div></div></div></div>")
         End If
         'Cash
         str.Append("<div class=""col-md-6 cash" & Identifier & """ id=""divCash" & Identifier & """><div class=""card border-" & CashColor & " border-lighten-3""><div class=""card-header""><h4 class=""card-title " & CashColor & " lighten-3""><span class=""icon-money text-muted""></span> " & CashInvoice & "</h4><div class=""heading-elements""><span class=""font-small-2 text-muted"">" & Invoice & ": (<span class=""orange"">" & CashInvoiceNo & "</span>) </span><span class=""font-small-2 tag tag-xs tag-info dynCash company"" title=""" & CashCompany & """>" & CashCompany & "</span></div></div>")
-        str.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynCash"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:100px;"" class=""dynCash"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynCash"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynCash"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th><th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table table-bordered mb-0 mt-0"" id=""tblCash" & Identifier & """><tbody>")
+        str.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynCash"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:80px;"" class=""dynCash"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynCash"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynCash"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th>" & TaxHeader_C & "<th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table table-bordered mb-0 mt-0"" id=""tblCash" & Identifier & """><tbody>")
         str.Append(CashRows)
-        str.Append("</tbody></table></div><table class=""table table-bordered mb-0 mt-0""><thead><tr><th style=""width:32px;""><a class=""cursor-pointer " & CashColor & " lighten-3"" href=""javascript:changeToCash(" & Identifier & ")""><i id=""btnCashIcon"" class=""icon-circle-" & CashExtend & """></i></a></th><td style=""width:70px;"" class=""dynCash""></td><th class=""itemName width-150""></th><th style=""width:100px;"" class=""dynCash""></th><th style=""width:80px;"" class=""dynCash"" id=""price_C_" & Identifier & """>0.00</th><th style=""width:80px;"" class=""dynCash""></th><th style=""width:44px;""></th><th style=""width:80px;"" id=""total_C_" & Identifier & """>0.00</th><th></th></tr></thead></table></div></div></div></div>")
+        str.Append("</tbody></table></div><table class=""table table-bordered mb-0 mt-0""><thead><tr><th style=""width:32px;""><a class=""cursor-pointer " & CashColor & " lighten-3"" href=""javascript:changeToCash(" & Identifier & ")""><i id=""btnCashIcon"" class=""icon-circle-" & CashExtend & """></i></a></th><td style=""width:70px;"" class=""dynCash""></td><th class=""itemName width-150""></th><th style=""width:80px;"" class=""dynCash""></th><th style=""width:80px;"" class=""dynCash"" id=""price_C_" & Identifier & """>0.00</th><th style=""width:80px;"" class=""dynCash""></th><th style=""width:44px;""></th><th style=""width:80px;"" id=""total_C_" & Identifier & """>0.00</th>" & TaxFooter_C & "<th></th></tr></thead></table></div></div></div></div>")
         'str.Append("<div class=""col-md-6 cash" & Identifier & """ id=""divCash" & Identifier & """><div class=""card border-" & CashColor & " border-lighten-3""><div class=""card-header""><h4 class=""card-title " & CashColor & " lighten-3""><span class=""icon-money text-muted""></span> " & CashInvoice & "</h4><div class=""heading-elements""><span class=""font-small-2 text-muted"">" & Invoice & ": (<span class=""orange"">0</span>)</span> <span class=""font-small-2 tag tag-xs tag-info dynCash company"" title=""" & CashCompany & """>" & CashCompany & "</span></div></div>")
         'str.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynCash"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:100px;"" class=""dynCash"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynCash"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynCash"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th><th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table able-bordered mb-0 mt-0"" id=""tblCash" & Identifier & """><tbody>")
         'str.Append(CashRows)
@@ -1257,7 +1288,7 @@ Public Class Orders
         Dim lblStatus, lblCashier, lblDoctor, lblDate, lblPatient, lblPharmacist, lblTotalCovered, lblTotalCash, lblTotal As String
         Dim lblInvoice As String
         Dim lblCancelBy, lblCancelDate As String
-        Dim colBarcode, colItemName, colItemNo, colAmount, colExpireDate, colUnitPrice, colDiscount, colTotal As String
+        Dim colBarcode, colItemName, colItemNo, colAmount, colExpireDate, colUnitPrice, colDiscount, colTax, colTotal As String
         Dim InsuranceExtend, CashExtend As String
         Dim CashBtnExtend As String = ""
         Dim btnReturnItem, btnReqReturnItem, btnCancel, btnReqCancel, btnPrint, btnClose, btnApprove, btnReject As String
@@ -1292,6 +1323,7 @@ Public Class Orders
                 colExpireDate = "الانتهاء"
                 colUnitPrice = "السعر"
                 colDiscount = "الخصم"
+                colTax = "الضريبة"
                 colTotal = "مجموع"
                 ' Buttons
                 btnReturnItem = "إعادة صنف"
@@ -1305,9 +1337,9 @@ Public Class Orders
                 ' Variables
                 InsuranceExtend = "right"
                 CashExtend = "left"
-                Status_Cancelled = "<span class=""tag tag-sm red"">ملغاة</span>"
-                Status_Paid = "<span class=""tag tag-sm blue"">مدفوعة</span>"
-                Status_Unpaid = "<span class=""tag tag-sm grey"">غير مدفوعة</span>"
+                Status_Cancelled = "<span class=""tag tag-sm tag-danger"">ملغاة</span>"
+                Status_Paid = "<span class=""tag tag-sm tag-success"">مدفوعة</span>"
+                Status_Unpaid = "<span class=""tag tag-sm tag-primary"">غير مدفوعة</span>"
                 CancellationMessage = "تم طلب الإلغاء بواسطة @USER في @DATE"
                 ReturningMessage = "تم طلب إعادة أصناف بواسطة @USER في @DATE"
                 ReturnMessage = " من الأصناف تمت إعادتها"
@@ -1337,6 +1369,7 @@ Public Class Orders
                 colExpireDate = "Expire"
                 colUnitPrice = "Price"
                 colDiscount = "Discount"
+                colTax = "Tax"
                 colTotal = "Total"
                 ' Buttons
                 btnReturnItem = "Return Item"
@@ -1350,9 +1383,9 @@ Public Class Orders
                 ' Variables
                 InsuranceExtend = "left"
                 CashExtend = "right"
-                Status_Cancelled = "<span class=""tag tag-sm red"">Cancelled</span>"
-                Status_Paid = "<span class=""tag tag-sm blue"">Paid</span>"
-                Status_Unpaid = "<span class=""tag tag-sm grey"">Unpaid</span>"
+                Status_Cancelled = "<span class=""tag tag-sm tag-danger"">Cancelled</span>"
+                Status_Paid = "<span class=""tag tag-sm tag-success"">Paid</span>"
+                Status_Unpaid = "<span class=""tag tag-sm tag-primary"">Unpaid</span>"
                 CancellationMessage = "Cancellation request made by @USER in @DATE"
                 ReturningMessage = "Returning request made by @USER in @DATE"
                 ReturnMessage = " Items has returned"
@@ -1438,11 +1471,37 @@ Public Class Orders
                     End If
 
                     ' build invoice header
-                    body.Append("<div class=""row""><div class=""col-md-12""><div class=""card""><div class=""card-body collapse in""><div class=""card-block"" style=""padding:10px; font-size:14px;"">")
-                    body.Append("<div class=""col-md-5 m-0 p-0""><div class=""col-md-12 m-0 p-0""><div class=""col-md-3 text-md-right text-bold-900"">" & lblPatient & ":</div><div class=""col-md-9 teal"">" & PatientName & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-3 text-md-right text-bold-900"">" & lblDoctor & ":</div><div class=""col-md-9 red"">" & DoctorName & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-3 text-md-right text-bold-900"">" & lblStatus & ":</div><div class=""col-md-9"">" & InvoiceStatus & "</div></div></div>")
-                    body.Append("<div class=""col-md-3 m-0 p-0""><div class=""col-md-12 m-0 p-0""><div class=""col-md-6 text-md-right text-bold-900"">" & lblDate & ":</div><div class=""col-md-6 teal"">" & CDate(InvoiceDate).ToString(strDateFormat) & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-6 text-md-right text-bold-900"">" & lblPharmacist & ":</div><div class=""col-md-6 red"">" & PharmacistName & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-6 text-md-right text-bold-900"">" & lblCashier & ":</div><div class=""col-md-6 red"">" & CashierName & "</div></div></div>")
-                    body.Append("<div class=""col-md-4 m-0 p-0""><div class=""col-md-12 p-0""><div class=""col-md-7 text-md-right text-bold-900"">" & lblTotalCash & ":</div><div class=""col-md-5 teal""><span class=""tag tag-sm tag-primary"" style=""width:75px;"" id=""totalCash1"">0.00</span></div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-7 text-md-right text-bold-900"">" & lblTotalCovered & ":</div><div class=""col-md-5 red""><span class=""tag tag-sm tag-default"" style=""width:75px;"" id=""totalCovered1"">0.00</span></div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-7 text-md-right text-bold-900"">" & lblTotal & ":</div><div class=""col-md-5 red""><span class=""tag tag-sm tag-default"" style=""width:75px;"" id=""totalAll1"">0.00</span></div></div></div>")
-                    body.Append("</div></div></div></div></div>")
+                    'body.Append("<div class=""row""><div class=""col-md-12""><div class=""card""><div class=""card-body collapse in""><div class=""card-block"" style=""padding:10px; font-size:14px;"">")
+                    'body.Append("<div class=""col-md-5 m-0 p-0""><div class=""col-md-12 m-0 p-0""><div class=""col-md-3 text-md-right text-bold-900"">" & lblPatient & ":</div><div class=""col-md-9 teal"">" & PatientName & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-3 text-md-right text-bold-900"">" & lblDoctor & ":</div><div class=""col-md-9 red"">" & DoctorName & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-3 text-md-right text-bold-900"">" & lblStatus & ":</div><div class=""col-md-9"">" & InvoiceStatus & "</div></div></div>")
+                    'body.Append("<div class=""col-md-3 m-0 p-0""><div class=""col-md-12 m-0 p-0""><div class=""col-md-6 text-md-right text-bold-900"">" & lblDate & ":</div><div class=""col-md-6 teal"">" & CDate(InvoiceDate).ToString(strDateFormat) & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-6 text-md-right text-bold-900"">" & lblPharmacist & ":</div><div class=""col-md-6 red"">" & PharmacistName & "</div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-6 text-md-right text-bold-900"">" & lblCashier & ":</div><div class=""col-md-6 red"">" & CashierName & "</div></div></div>")
+                    'body.Append("<div class=""col-md-4 m-0 p-0""><div class=""col-md-12 p-0""><div class=""col-md-7 text-md-right text-bold-900"">" & lblTotalCash & ":</div><div class=""col-md-5 teal""><span class=""tag tag-sm tag-primary"" style=""width:75px;"" id=""totalCash1"">0.00</span></div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-7 text-md-right text-bold-900"">" & lblTotalCovered & ":</div><div class=""col-md-5 red""><span class=""tag tag-sm tag-default"" style=""width:75px;"" id=""totalCovered1"">0.00</span></div></div><div class=""col-md-12 p-0"" style=""margin-top:10px;""><div class=""col-md-7 text-md-right text-bold-900"">" & lblTotal & ":</div><div class=""col-md-5 red""><span class=""tag tag-sm tag-default"" style=""width:75px;"" id=""totalAll1"">0.00</span></div></div></div>")
+                    'body.Append("</div></div></div></div></div>")
+                    body.Append("<div class=""row border-grey lighten-0 m-0 mb-1 font-small-3 box-shadow-1"" style=""padding:5px;"">")
+                    body.Append("<div class=""col-md-5 m-0 p-0"">")
+                    body.Append("<div class=""col-md-2 text-md-right text-bold-900"">" & lblPatient & ":</div><div class=""col-md-10 teal"">" & PatientName & "</div>")
+                    body.Append("<div class=""col-md-2 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblDoctor & ":</div><div class=""col-md-10 red"" style=""margin-top:5px"">" & DoctorName & "</div>")
+                    body.Append("<div class=""col-md-2 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblStatus & ":</div><div class=""col-md-10"" style=""margin-top:5px"">" & InvoiceStatus & "</div>")
+                    body.Append("</div>")
+                    body.Append("<div class=""col-md-3 m-0 p-0"">")
+                    body.Append("<div class=""col-md-6 text-md-right text-bold-900"">" & lblDate & ":</div><div class=""col-md-6 red"">" & CDate(InvoiceDate).ToString(strDateFormat) & "</div>")
+                    body.Append("<div class=""col-md-6 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblPharmacist & ":</div><div class=""col-md-6 teal"" style=""margin-top:5px"">" & strUserName & "</div>")
+                    body.Append("<div class=""col-md-6 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblCashier & ":</div><div class=""col-md-6 red"" style=""margin-top:5px"">" & CashierName & "</div>")
+                    body.Append("</div>")
+                    If TaxEnabled = True Then
+                        body.Append("<div class=""col-md-4 m-0 p-0"">")
+                        body.Append("<div class=""col-md-5 text-md-right text-bold-900"">" & lblTotalCash & ":</div><div class=""col-md-7 teal""><span class=""tag tag-sm tag-primary"" style=""width:60px;"" id=""totalCash1"">0.00</span><span class=""tag tag-sm tag-primary"" style=""width:45px; margin-left:2px; margin-right:2px;"" id=""totalVat1"">0.00</span></div>")
+                        body.Append("<div class=""col-md-5 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblTotalCovered & ":</div><div class=""col-md-7 red"" style=""margin-top:5px""><span class=""tag tag-sm tag-default"" style=""width:60px;"" id=""totalCovered1"">0.00</span><span class=""tag tag-sm tag-default"" style=""width:45px; margin-left:2px; margin-right:2px;"" id=""totalCoveredVat1"">0.00</span></div>")
+                        body.Append("<div class=""col-md-5 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblTotal & ":</div><div class=""col-md-7 red"" style=""margin-top:5px""><span class=""tag tag-sm tag-default"" style=""width:60px;"" id=""totalAll1"">0.00</span><span class=""tag tag-sm tag-default"" style=""width:45px; margin-left:2px; margin-right:2px;"" id=""totalTotalVat1"">0.00</span></div>")
+                        body.Append("</div>")
+                    Else
+                        body.Append("<div class=""col-md-4 m-0 p-0"">")
+                        body.Append("<div class=""col-md-5 text-md-right text-bold-900"">" & lblTotalCash & ":</div><div class=""col-md-7 teal""><span class=""tag tag-sm tag-primary"" style=""width:80px;"" id=""totalCash1"">0.00</span><span  style=""display:none;"" id=""totalVat1"">0.00</span></div>")
+                        body.Append("<div class=""col-md-5 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblTotalCovered & ":</div><div class=""col-md-7 red"" style=""margin-top:5px""><span class=""tag tag-sm tag-default"" style=""width:80px;"" id=""totalCovered1"">0.00</span><span  style=""display:none;"" id=""totalCoveredVat1"">0.00</span></div>")
+                        body.Append("<div class=""col-md-5 text-md-right text-bold-900"" style=""margin-top:5px"">" & lblTotal & ":</div><div class=""col-md-7 red"" style=""margin-top:5px""><span class=""tag tag-sm tag-default"" style=""width:80px;"" id=""totalAll1"">0.00</span><span  style=""display:none;"" id=""totalTotalVat1"">0.00</span></div>")
+                        body.Append("</div>")
+                    End If
+                    body.Append("</div>")
+
 
                     ' get general information
                     Dim MaxP, CICov, MICov As Decimal
@@ -1461,7 +1520,7 @@ Public Class Orders
                         MICov = 0
                     End If
 
-                    body.Append("<input type=""hidden"" id=""trans1"" name=""lngTransaction"" value=""" & lngTransaction & """ /><input type=""hidden"" id=""counter1"" value=""0"" /><input type=""hidden"" id=""coveredCash1"" name=""coveredCash"" value=""0"" /><input type=""hidden"" id=""deductionCash1"" name=""deductionCash"" value=""0"" /><input type=""hidden"" id=""nonCoveredCash1"" name=""nonCoveredCash"" value=""0"" /><input type=""hidden"" id=""basePrice1"" value=""0"" /><input type=""hidden"" id=""cashOnly1"" name=""cashOnly"" value=""" & CInt(IsCash) & """ /><input type=""hidden"" id=""Limit_1"" value=""" & MaxP & """ /><input type=""hidden"" id=""CICov_1"" value=""" & CICov & """ /><input type=""hidden"" id=""MICov_1"" value=""" & MICov & """ />")
+                    body.Append("<input type=""hidden"" id=""trans1"" name=""lngTransaction"" value=""" & lngTransaction & """ /><input type=""hidden"" id=""counter1"" value=""0"" /><input type=""hidden"" id=""coveredCash1"" name=""coveredCash"" value=""0"" /><input type=""hidden"" id=""deductionCash1"" name=""deductionCash"" value=""0"" /><input type=""hidden"" id=""nonCoveredCash1"" name=""nonCoveredCash"" value=""0"" /><input type=""hidden"" id=""basePrice1"" value=""0"" /><input type=""hidden"" id=""cashOnly1"" name=""cashOnly"" value=""" & CInt(IsCash) & """ /><input type=""hidden"" id=""Limit_1"" value=""" & MaxP & """ /><input type=""hidden"" id=""CICov_1"" value=""" & CICov & """ /><input type=""hidden"" id=""MICov_1"" value=""" & MICov & """ /><input type=""hidden"" id=""coveredVat1"" name=""coveredVat"" value=""0"" /><input type=""hidden"" id=""deductionVat1"" name=""deductionVat"" value=""0"" /><input type=""hidden"" id=""nonCoveredVat1"" name=""nonCoveredVat"" value=""0"" />")
 
                     ' get invoice items
                     Dim Returned As Boolean
@@ -1483,21 +1542,31 @@ Public Class Orders
                         Else
                             Returned = False
                         End If
-                        InvoiceItems = InvoiceItems & createItemRow(lngTransaction, 1, IsCash, CheckBox, dsItems.Tables(0).Rows(I).Item("strBarCode"), dsItems.Tables(0).Rows(I).Item("strItem"), dsItems.Tables(0).Rows(I).Item("strItem" & DataLang), dsItems.Tables(0).Rows(I).Item("byteUnit"), dsItems.Tables(0).Rows(I).Item("dateExpiry"), dsItems.Tables(0).Rows(I).Item("curBasePrice"), dsItems.Tables(0).Rows(I).Item("curDiscount"), dsItems.Tables(0).Rows(I).Item("curQuantity"), dsItems.Tables(0).Rows(I).Item("curBaseDiscount"), dsItems.Tables(0).Rows(I).Item("curCoverage"), 0, dsItems.Tables(0).Rows(I).Item("intService"), dsItems.Tables(0).Rows(I).Item("byteWarehouse"), "", False, Returned)
+                        InvoiceItems = InvoiceItems & createItemRow(lngTransaction, 1, IsCash, CheckBox, dsItems.Tables(0).Rows(I).Item("strBarCode"), dsItems.Tables(0).Rows(I).Item("strItem"), dsItems.Tables(0).Rows(I).Item("strItem" & DataLang), dsItems.Tables(0).Rows(I).Item("byteUnit"), dsItems.Tables(0).Rows(I).Item("dateExpiry"), dsItems.Tables(0).Rows(I).Item("curBasePrice"), dsItems.Tables(0).Rows(I).Item("curDiscount"), dsItems.Tables(0).Rows(I).Item("curQuantity"), dsItems.Tables(0).Rows(I).Item("curBaseDiscount"), dsItems.Tables(0).Rows(I).Item("curCoverage"), dsItems.Tables(0).Rows(I).Item("curVAT"), dsItems.Tables(0).Rows(I).Item("intService"), dsItems.Tables(0).Rows(I).Item("byteWarehouse"), "", False, Returned)
                     Next
 
                     ' build invoice body
+                    Dim TaxHeader_C As String = ""
+                    Dim TaxHeader_I As String = ""
+                    Dim TaxFooter_C As String = ""
+                    Dim TaxFooter_I As String = ""
+                    If TaxEnabled = True Then
+                        TaxHeader_I = "<th style=""width:80px;"" class=""dynInsurance"">" & colTax & "</th>"
+                        TaxHeader_C = "<th style=""width:80px;"" class=""dynCash"">" & colTax & "</th>"
+                        TaxFooter_I = "<th style=""width:80px;"" class=""dynInsurance"" id=""vat_I_1"">0.00</th>"
+                        TaxFooter_C = "<th style=""width:80px;"" class=""dynCash"" id=""vat_C_1"">0.00</th>"
+                    End If
                     body.Append("<div class=""row"">")
                     If IsCash = False Then
                         body.Append("<div class=""col-md-12 insurance1"" id=""divInsurance1""><div class=""card border-" & InsuranceColor & " border-lighten-3""><div class=""card-header""><h4 class=""card-title " & InsuranceColor & " lighten-3""><span class=""icon-clipboard4 text-muted""></span> " & InsuranceInvoice & "</h4><div class=""heading-elements""><span class=""font-small-2 text-muted"">" & lblInvoice & ": (<span class=""orange"">" & InvoiceNo & "</span>) </span><span class=""font-small-2 tag tag-xs tag-info dynInsurance company"" title=""" & CompanyName & """>" & CompanyName & "</span></div></div>")
-                        body.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynInsurance"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:100px;"" class=""dynInsurance"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th><th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table table-bordered mb-0 mt-0"" id=""tblInsurance1""><tbody>")
+                        body.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynInsurance"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynInsurance"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th>" & TaxHeader_I & "<th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table table-bordered mb-0 mt-0"" id=""tblInsurance1""><tbody>")
                         body.Append(InvoiceItems)
-                        body.Append("</tbody></table></div><table class=""table table-bordered mb-0 mt-0""><thead><tr><th style=""width:32px;""></th><td style=""width:70px;"" class=""dynInsurance""></td><th class=""itemName width-150""></th><th style=""width:100px;"" class=""dynInsurance""></th><th style=""width:80px;"" class=""dynInsurance"" id=""price_I_1"">0.00</th><th style=""width:80px;"" class=""dynInsurance""></th><th style=""width:44px;""></th><th style=""width:80px;"" id=""total_I_1"">0.00</th><th></th></tr></thead></table></div></div></div></div>")
+                        body.Append("</tbody></table></div><table class=""table table-bordered mb-0 mt-0""><thead><tr><th style=""width:32px;""></th><td style=""width:70px;"" class=""dynInsurance""></td><th class=""itemName width-150""></th><th style=""width:80px;"" class=""dynInsurance""></th><th style=""width:80px;"" class=""dynInsurance"" id=""price_I_1"">0.00</th><th style=""width:80px;"" class=""dynInsurance""></th><th style=""width:44px;""></th><th style=""width:80px;"" id=""total_I_1"">0.00</th>" & TaxFooter_I & "<th></th></tr></thead></table></div></div></div></div>")
                     Else
                         body.Append("<div class=""col-md-12 cash1"" id=""divCash1""><div class=""card border-" & CashColor & " border-lighten-3""><div class=""card-header""><h4 class=""card-title " & CashColor & " lighten-3""><span class=""icon-money text-muted""></span> " & CashInvoice & "</h4><div class=""heading-elements""><span class=""font-small-2 text-muted"">" & lblInvoice & ": (<span class=""orange"">" & InvoiceNo & "</span>) </span><span class=""font-small-2 tag tag-xs tag-info dynCash company"" title=""" & CompanyName & """>" & CompanyName & "</span></div></div>")
-                        body.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynCash"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:100px;"" class=""dynCash"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynCash"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynCash"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th><th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table table-bordered mb-0 mt-0"" id=""tblCash1""><tbody>")
+                        body.Append("<div class=""card-body collapse in""><div class=""card-block p-0""><table class=""table table-bordered mb-0""><thead><tr><th style=""width:32px;""></th><th style=""width:70px;"" class=""dynCash"">" & colItemNo & "</th><th class=""itemName width-150"" title=""" & colItemName & """>" & colItemName & "</th><th style=""width:80px;"" class=""dynCash"">" & colExpireDate & "</th><th style=""width:80px;"" class=""dynCash"">" & colUnitPrice & "</th><th style=""width:80px;"" class=""dynCash"">" & colDiscount & "</th><th style=""width:44px;"">" & colAmount & "</th><th style=""width:80px;"">" & colTotal & "</th>" & TaxHeader_C & "<th></th></tr></thead></table><div style=""height:" & TableHeight & "px; overflow-x:auto;"" class="" mb-0 mt-0""><table class=""table table-bordered mb-0 mt-0"" id=""tblCash1""><tbody>")
                         body.Append(InvoiceItems)
-                        body.Append("</tbody></table></div><table class=""table table-bordered mb-0 mt-0""><thead><tr><th style=""width:32px;""></th><td style=""width:70px;"" class=""dynCash""></td><th class=""itemName width-150""></th><th style=""width:100px;"" class=""dynCash""></th><th style=""width:80px;"" class=""dynCash"" id=""price_C_1"">0.00</th><th style=""width:80px;"" class=""dynCash""></th><th style=""width:44px;""></th><th style=""width:80px;"" id=""total_C_1"">0.00</th><th></th></tr></thead></table></div></div></div></div>")
+                        body.Append("</tbody></table></div><table class=""table table-bordered mb-0 mt-0""><thead><tr><th style=""width:32px;""></th><td style=""width:70px;"" class=""dynCash""></td><th class=""itemName width-150""></th><th style=""width:80px;"" class=""dynCash""></th><th style=""width:80px;"" class=""dynCash"" id=""price_C_1"">0.00</th><th style=""width:80px;"" class=""dynCash""></th><th style=""width:44px;""></th><th style=""width:80px;"" id=""total_C_1"">0.00</th>" & TaxFooter_C & "<th></th></tr></thead></table></div></div></div></div>")
                     End If
                     body.Append("</div>")
                     'message
@@ -2113,6 +2182,7 @@ Public Class Orders
         If bCash = True Then
             'Cash
             thisCoverage = 0
+            curUnitPrice = curBasePrice
             'thisPrice = curBasePrice
             'PatientCash = curBasePrice
             'InsuranceCoverage = 0
@@ -2135,7 +2205,12 @@ Public Class Orders
         End If
 
         '7====> Get Tax (VAT)
-        If bTax = False Then curTax = 0
+        'If bTax = False Then curTax = 0
+        If bTax = True And curTax <> 0 Then
+            curVAT = curUnitPrice * (curTax / 100)
+        Else
+            curVAT = 0
+        End If
 
         '7====> Build record
         Dim Quantity, Discount, ExpireDate, Typ, Func As String
@@ -2176,10 +2251,10 @@ Public Class Orders
 
         Ret = Ret & "function addThis(){"
         If bCash = False Then
-            Ret = Ret & "var item = '" & createItemRow(lngTransaction, RowCounter, False, itemFlag, strBarcode, strItem, strItemName, byteUnit, dateExpiry, curBasePrice, curDiscount, curQuantity, curBaseDiscount, thisCoverage, curTax, intService, byteWarehouse, strDose, True, False, True) & "';"
+            Ret = Ret & "var item = '" & createItemRow(lngTransaction, RowCounter, False, itemFlag, strBarcode, strItem, strItemName, byteUnit, dateExpiry, curBasePrice, curDiscount, curQuantity, curBaseDiscount, thisCoverage, curVAT, intService, byteWarehouse, strDose, True, False, True) & "';"
             Ret = Ret & "$('#tblInsurance' + curTab + ' > tbody:last-child').append(item);$('#counter' + curTab).val(parseInt($('#counter' + curTab).val())+1);InsuranceOn[curTab]=!(InsuranceOn[curTab]);changeToInsurance(curTab);calculateInsurance(curTab);$('#items_I_' + curTab).val($('#items_I_' + curTab).val()+'" & strItem & ",');"
         Else
-            Ret = Ret & "var item = '" & createItemRow(lngTransaction, RowCounter, True, itemFlag, strBarcode, strItem, strItemName, byteUnit, dateExpiry, curBasePrice, curDiscount, curQuantity, curBaseDiscount, thisCoverage, curTax, intService, byteWarehouse, strDose, True, False, True) & "';"
+            Ret = Ret & "var item = '" & createItemRow(lngTransaction, RowCounter, True, itemFlag, strBarcode, strItem, strItemName, byteUnit, dateExpiry, curBasePrice, curDiscount, curQuantity, curBaseDiscount, thisCoverage, curVAT, intService, byteWarehouse, strDose, True, False, True) & "';"
             Ret = Ret & "$('#tblCash' + curTab + ' > tbody:last-child').append(item);$('#counter' + curTab).val(parseInt($('#counter' + curTab).val())+1);cashOn[curTab]=!(cashOn[curTab]);changeToCash(curTab);calculateCash(curTab);$('#items_C_' + curTab).val($('#items_C_' + curTab).val()+'" & strItem & ",');"
         End If
         Ret = Ret & "refreshListeners();createPrintDoseLink(curTab);" & Script
@@ -2276,7 +2351,8 @@ Public Class Orders
             curUnitPrice = Math.Round((curBasePrice * curQuantity) - ((curBasePrice * curQuantity) * (curDiscount / 100)), byteCurrencyRound, MidpointRounding.AwayFromZero)
             curTotal = curCoverage
             curBaseDiscount = curBaseDiscount
-            moveButton = "<button type=""button"" onclick=""javascript:moveThis(this);" & Func & "(curTab);"" class=""btn btn-info btn-lighten-3 btn-xs " & Cls & """>" & btnMove & "</button>"
+            'moveButton = "<button type=""button"" onclick=""javascript:moveThis(this);" & Func & "(curTab);"" class=""btn btn-info btn-lighten-3 btn-xs " & Cls & """>" & btnMove & "</button>"
+            moveButton = ""
         Else
             Typ = "C"
             Cls = "dynCash"
@@ -2288,9 +2364,9 @@ Public Class Orders
         End If
 
         If dateExpiry <= DateAdd(DateInterval.Month, 3, Today) Then
-            ExpireDate = "<span class=""tag tag-danger tag-xs"">" & CDate(dateExpiry).ToString(strDateFormat) & "</span><input type=""hidden"" name=""expire_" & Typ & """ class=""expire"" value=""" & CDate(dateExpiry).ToString("yyyy-MM-dd") & """/>"
+            ExpireDate = "<span class=""tag tag-danger tag-xs"">" & CDate(dateExpiry).ToString("yyyy-MM") & "</span><input type=""hidden"" name=""expire_" & Typ & """ class=""expire"" value=""" & CDate(dateExpiry).ToString("yyyy-MM-dd") & """/>"
         Else
-            ExpireDate = CDate(dateExpiry).ToString(strDateFormat) & "<input type=""hidden"" name=""expire_" & Typ & """ class=""expire"" value=""" & CDate(dateExpiry).ToString("yyyy-MM-dd") & """/>"
+            ExpireDate = CDate(dateExpiry).ToString("yyyy-MM") & "<input type=""hidden"" name=""expire_" & Typ & """ class=""expire"" value=""" & CDate(dateExpiry).ToString("yyyy-MM-dd") & """/>"
         End If
 
         If (lngTransaction > 0) And ((PrintDose = 2) Or (PrintDose = 3)) And (strDose <> "0000000000") And (strDose <> "") Then
@@ -2302,7 +2378,7 @@ Public Class Orders
         Dim AutoPrint As String = ""
         If (AutoPrintDose = True) And ((PrintDose = 1) Or (PrintDose = 3)) And (strDose <> "0000000000") And (strDose <> "") Then AutoPrint = "<i><span id=""directPrint"" app-url=""p_dose.aspx?t=" & lngTransaction & "&i=" & strItem & "&e=" & CDate(dateExpiry).ToString("yyyy-MM-dd") & """></span></i>"
 
-        If Editable = True Then allButtons = printButton & " <button type=""button"" onclick=""javascript:remove" & Typ & "Items(this);removeThis(this);" & Func & "(curTab);"" class=""btn btn-red btn-lighten-3 btn-xs"">" & btnDelete & "</button> " & moveButton & AutoPrint Else allButtons = """"
+        If Editable = True Then allButtons = printButton & " <button type=""button"" onclick=""javascript:remove" & Typ & "Items(this);removeThis(this);" & Func & "(curTab);"" class=""btn btn-red btn-lighten-3 btn-xs"">" & btnDelete & "</button> " & moveButton & AutoPrint Else allButtons = ""
         Dim DelStart, DelEnd, Lit As String
         If Returned = True Then
             DelStart = "<del>"
@@ -2322,15 +2398,19 @@ Public Class Orders
         'add item name
         item = item & "<td class=""itemName width-150"" title=""" & strItemName & """>" & DelStart & strItemName & DelEnd & "</td>"
         'add expire date
-        item = item & "<td style=""width:100px;"" class=""" & Cls & " red"">" & ExpireDate & "</td>"
+        item = item & "<td style=""width:80px;"" class=""" & Cls & " red"">" & ExpireDate & "</td>"
         'add baseprice + service + warehouse
         item = item & "<td style=""width:80px;"" class=""" & Cls & """>" & Math.Round(curBasePrice, byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""price"" name=""baseprice_" & Typ & """ class=""price_" & Typ & """ value=""" & curBasePrice & """/><input type=""hidden"" name=""service_" & Typ & """ value=""" & intService & """/><input type=""hidden"" name=""warehouse_" & Typ & """ value=""" & byteWarehouse & """/></td>"
         'add unitprice + unitdicsount
         item = item & "<td style=""width:80px;"" class=""" & Cls & """>" & Math.Round(curDiscount, byteCurrencyRound, MidpointRounding.AwayFromZero) & " %<input type=""hidden"" name=""basediscount_" & Typ & """ value=""" & curBaseDiscount & """/><input type=""hidden"" id=""discount"" name=""discount_" & Typ & """ class=""discount_" & Typ & """ value=""" & curDiscount & """/></td>"
         'add quantity
         item = item & "<td style=""width:44px;"">" & Math.Round(curQuantity, byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" name=""quantity_" & Typ & """ value=""" & curQuantity & """/></td>"
-        'add total + coverage + vat
-        item = item & "<td style=""width:80px;"">" & Math.Round(curUnitPrice, byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""total"" name=""unitprice_" & Typ & """ class=""total_" & Typ & """ value=""" & curUnitPrice & """/><input type=""hidden"" id=""coverage_" & Typ & """ name=""coverage_" & Typ & """ class=""coverage_" & Typ & """ value=""" & curCoverage & """/><input type=""hidden"" class=""vat_" & Typ & """ name=""vat_" & Typ & """ value=""" & curVAT & """/></td>"
+        'add total + coverage
+        item = item & "<td style=""width:80px;"">" & Math.Round(curUnitPrice, byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" id=""total"" name=""unitprice_" & Typ & """ class=""total_" & Typ & """ value=""" & curUnitPrice & """/><input type=""hidden"" id=""coverage_" & Typ & """ name=""coverage_" & Typ & """ class=""coverage_" & Typ & """ value=""" & curCoverage & """/></td>"
+        If TaxEnabled = True Then
+            'add vat
+            item = item & "<td style=""width:80px;"" class=""" & Cls & """>" & Math.Round(curVAT, byteCurrencyRound, MidpointRounding.AwayFromZero) & "<input type=""hidden"" class=""vat_" & Typ & """ name=""vat_" & Typ & """ value=""" & curVAT & """/></td>"
+        End If
         'add buttons
         item = item & "<td class=""text-nowrap"">" & allButtons & "</td>"
         'close row
@@ -2476,10 +2556,10 @@ Public Class Orders
 
     End Class
 
-    Private Function createCashBox(ByVal strPatientName As String, ByVal curAmount As Decimal, ByVal IsCashier As Boolean) As String()
+    Private Function createCashBox(ByVal strPatientName As String, ByVal curAmount As Decimal, ByVal curVat As Decimal, ByVal IsCashier As Boolean) As String()
         Dim body As New StringBuilder("")
         Dim btnPayment, btnCash, btnCredit, btnSplit, btnJoin, btnCancel As String
-        Dim lblPatient, lblCash, lblPaid, lblRemind, lblCredit, lblAmount, btnCalculator As String
+        Dim lblPatient, lblCash, lblPaid, lblRemind, lblCredit, lblAmount, lblVat, lblTotal, btnCalculator As String
 
         Select Case ByteLanguage
             Case 2
@@ -2487,6 +2567,8 @@ Public Class Orders
                 'labels
                 lblPatient = "المريض"
                 lblAmount = "المبلغ"
+                lblVat = "الضريبة"
+                lblTotal = "المجموع"
                 lblCash = "النقدي"
                 lblPaid = "المدفوع"
                 lblRemind = "المتبقي"
@@ -2505,6 +2587,8 @@ Public Class Orders
                 btnCalculator = "Calculator"
                 lblPatient = "Patient"
                 lblAmount = "Amount"
+                lblVat = "VAT"
+                lblTotal = "Total"
                 lblCash = "Cash"
                 lblPaid = "Paid"
                 lblRemind = "Remind"
@@ -2520,15 +2604,21 @@ Public Class Orders
 
         body.Append("<div class=""row""><div class=""col-md-12""><div class=""col-md-3 text-md-right text-bold-900"">" & lblPatient & ":</div><div class=""col-md-9 teal"">" & strPatientName & "</div></div><div class=""col-md-12""><hr /></div><div class=""col-md-6"">")
         'left part
-        body.Append("<div class=""col-md-12""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblAmount & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_total"" readonly=""readonly"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey"" value=""" & curAmount & """ /></div></div>")
-        body.Append("<div class=""col-md-12"" id=""divTotalPaid""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblPaid & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_paid"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey"" value=""0"" /></div></div>")
-        body.Append("<div class=""col-md-12"" id=""divTotalCash""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblCredit & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_credit"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey"" value=""0"" /></div></div>")
-        body.Append("<div class=""col-md-12"" id=""divTotalCredit""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblCash & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_cash"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey"" value=""0"" /></div></div>")
+        If TaxEnabled = True Then
+            body.Append("<div class=""col-md-12""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblAmount & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_amount"" readonly=""readonly"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey"" value=""" & curAmount & """ /></div></div>")
+            body.Append("<div class=""col-md-12""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblVat & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_vat"" readonly=""readonly"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey"" value=""" & curVat & """ /></div></div>")
+            body.Append("<div class=""col-md-12""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblTotal & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_total"" readonly=""readonly"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey border-red"" value=""" & curAmount + curVat & """ /></div></div>")
+        Else
+            body.Append("<div class=""col-md-12""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblAmount & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_total"" readonly=""readonly"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey border-red"" value=""" & curAmount & """ /></div></div>")
+        End If
+        body.Append("<div class=""col-md-12"" id=""divTotalPaid""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblPaid & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_paid"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey border-blue"" value=""0"" /></div></div>")
+        body.Append("<div class=""col-md-12"" id=""divTotalCash""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblCredit & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_credit"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey border-blue"" value=""0"" /></div></div>")
+        body.Append("<div class=""col-md-12"" id=""divTotalCredit""><div class=""col-md-5 p-0""><label class=""col-form-label""><h5 class=""text-md-right"">" & lblCash & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_cash"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey border-blue"" value=""0"" /></div></div>")
         body.Append("<div class=""col-md-12""><div class=""col-md-5 p-0""><label lass=""col-form-label""><h5 class=""text-md-right"">" & lblRemind & ":</h5></label></div><div class=""col-md-7 p-0""><input type=""number"" id=""net_remind"" readonly=""readonly"" class=""form-control text-md-center white text-bold-100 col-md-12 bg-grey"" value=""0"" /></div></div>")
 
         body.Append("</div><div class=""col-md-6"">")
         'right part
-        body.Append("<table style=""width:100%""><tr><td colspan=""3""><button type=""button"" class=""btn btn-teal col-md-12"">" & btnCalculator & "</button></td></tr><tr><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">5</button></td><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">10</button></td><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">50</button></td></tr><tr><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">100</button></td><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">200</button></td><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">500</button></td></tr><tr><td colspan=""3""><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">" & curAmount & "</button></td></tr></table>")
+        body.Append("<table style=""width:100%""><tr><td colspan=""3""><button type=""button"" class=""btn btn-teal col-md-12"">" & btnCalculator & "</button></td></tr><tr><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">5</button></td><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">10</button></td><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">50</button></td></tr><tr><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">100</button></td><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">200</button></td><td><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">500</button></td></tr><tr><td colspan=""3""><button type=""button"" class=""btn btn-teal col-md-12 calcNum"">" & curAmount + curVat & "</button></td></tr></table>")
         body.Append("</div></div>")
 
         Dim btns As String
@@ -2551,6 +2641,7 @@ Public Class Orders
         Dim ds As DataSet
         Dim lngPatient As Long
         Dim coveredCash, nonCoveredCash, TotalCashAmount As Decimal
+        Dim coveredVat, nonCoveredVat, TotalVatAmount As Decimal
         Dim bCreatCash As Boolean
         Dim strPatientName As String
 
@@ -2568,28 +2659,33 @@ Public Class Orders
             lngPatient = ds.Tables(0).Rows(0).Item("PatientNo")
             strPatientName = ds.Tables(0).Rows(0).Item("PatientName")
             Dim dsTemp, dsCovered, dsNonCovered As DataSet
-            dsCovered = dcl.GetDS("SELECT SUM(XI.curCoverage) AS Total FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink WHERE X.lngTransaction=" & lngTransaction)
+            dsCovered = dcl.GetDS("SELECT SUM(XI.curBasePrice) AS Total, SUM(XI.curVAT) AS TotalVat FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink WHERE X.lngTransaction=" & lngTransaction)
             coveredCash = CDec("0" & dsCovered.Tables(0).Rows(0).Item("Total").ToString)
+            coveredVat = CDec("0" & dsCovered.Tables(0).Rows(0).Item("TotalVat").ToString)
             If IsDBNull(ds.Tables(0).Rows(0).Item("bCreatCash")) = True Or ds.Tables(0).Rows(0).Item("bCreatCash").ToString = "0" Then bCreatCash = False Else bCreatCash = True
             If bCreatCash = True Then
                 Dim lngXlink As Long = 0
                 dsTemp = dcl.GetDS("SELECT * FROM Stock_Trans WHERE strReference='" & ds.Tables(0).Rows(0).Item("ClinicInvoiceNo") & "' AND lngPatient=" & lngPatient & " AND dateTransaction='" & CDate(ds.Tables(0).Rows(0).Item("TransactionDate")).ToString("yyyy-MM-dd") & "' AND bSubCash=1")
                 If dsTemp.Tables(0).Rows.Count > 0 Then
-                    dsNonCovered = dcl.GetDS("SELECT SUM(XI.curCoverage) AS Total FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink WHERE X.lngTransaction=" & dsTemp.Tables(0).Rows(0).Item("lngTransaction"))
+                    dsNonCovered = dcl.GetDS("SELECT SUM(XI.curBasePrice) AS Total, SUM(XI.curVAT) AS TotalVat FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink WHERE X.lngTransaction=" & dsTemp.Tables(0).Rows(0).Item("lngTransaction"))
                     nonCoveredCash = CDec("0" & dsNonCovered.Tables(0).Rows(0).Item("Total").ToString)
+                    nonCoveredVat = CDec("0" & dsNonCovered.Tables(0).Rows(0).Item("TotalVat").ToString)
                 Else
                     nonCoveredCash = 0
+                    nonCoveredVat = 0
                 End If
             Else
                 nonCoveredCash = 0
+                nonCoveredVat = 0
             End If
         Else
             Return "Err:"
         End If
         TotalCashAmount = Math.Round((coveredCash + nonCoveredCash), byteCurrencyRound, MidpointRounding.AwayFromZero)
+        TotalVatAmount = Math.Round((coveredVat + nonCoveredVat), byteCurrencyRound, MidpointRounding.AwayFromZero)
 
         'Dim source As String
-        Dim res As String() = createCashBox(strPatientName, TotalCashAmount, True)
+        Dim res As String() = createCashBox(strPatientName, TotalCashAmount, TotalVatAmount, True)
         Dim body As String = res(0)
         Dim btns As String = res(1)
         'If OnePaymentForCashier Then source = "$('#net_total').val()" Else source = "" ' ====> for later work
@@ -2603,6 +2699,7 @@ Public Class Orders
         Dim ds As DataSet
         Dim lngTransaction, lngPatient As Long
         Dim coveredCash, deductionCash, nonCoveredCash, TotalCashAmount As Decimal
+        Dim coveredVat, deductionVat, nonCoveredVat, TotalVatAmount As Decimal
         Dim cashOnly As Boolean
         Dim strPatientName As String
 
@@ -2628,11 +2725,18 @@ Public Class Orders
                     deductionCash = field(I).value()
                 Case "nonCoveredCash"
                     nonCoveredCash = field(I).value()
+                Case "coveredVat"
+                    coveredVat = field(I).value()
+                Case "deductionVat"
+                    deductionVat = field(I).value()
+                Case "nonCoveredVat"
+                    nonCoveredVat = field(I).value()
             End Select
         Next
 
         'analize data and verify
         TotalCashAmount = coveredCash + nonCoveredCash
+        TotalVatAmount = coveredVat + nonCoveredVat
         If lngTransaction > 0 Then
             ' Insurance
             ds = dcl.GetDS("SELECT ST.lngTransaction AS TransactionNo, ST.lngPatient AS PatientNo, RTRIM(LTRIM(ISNULL(P.strFirst" & DataLang & ",'') + ' ') + LTRIM(ISNULL(P.strSecond" & DataLang & ",'') + ' ') + LTRIM(ISNULL(P.strThird" & DataLang & " ,'') + ' ') + LTRIM(ISNULL(P.strLast" & DataLang & ",''))) AS PatientName, P.strID AS PatientNationalID, P.strInsuranceNo AS PatientInsuranceNo, ST.strTransaction AS InvoiceNo, ST.dateEntry AS InvoiceDate, D.byteDepartment AS DepartmentNo, D.strDepartment" & DataLang & " AS DepartmentName, C1.lngContact AS DoctorNo, C1.strContact" & DataLang & " AS DoctorName, ST.strReference AS ClinicInvoiceNo, CASE WHEN ST.bCash = 1 THEN 'Cash' ELSE 'Insurance' END AS PaymentType, C2.lngContact AS CompanyNo, C2.strContact" & DataLang & " AS CompanyName, STA.strCreatedBy AS UserName, CASE WHEN ST.datePrepeare IS NULL THEN 0 ELSE 1 END AS TransactionStatus FROM Stock_Trans AS ST LEFT JOIN Stock_Trans_Audit AS STA ON STA.lngTransaction = ST.lngTransaction INNER JOIN Hw_Patients AS P ON ST.lngPatient = P.lngPatient INNER JOIN Hw_Departments AS D ON ST.byteDepartment = D.byteDepartment INNER JOIN Hw_Contacts AS C1 ON ST.lngSalesman = C1.lngContact INNER JOIN Hw_Contacts AS C2 ON ST.lngContact = C2.lngContact WHERE ST.byteBase = 50 AND Year(ST.dateTransaction) = 2019 AND ST.bCollected1 = 1 AND ST.byteStatus = 1 AND ST.bApproved1 = 0 AND (ST.bSubCash = 0 OR ST.bSubCash IS NULL) AND ST.lngTransaction = " & lngTransaction)
@@ -2645,7 +2749,7 @@ Public Class Orders
             strPatientName = ds.Tables(0).Rows(0).Item("PatientName")
         End If
 
-        Dim res As String() = createCashBox(strPatientName, TotalCashAmount, False)
+        Dim res As String() = createCashBox(strPatientName, TotalCashAmount, TotalVatAmount, False)
         Dim body As String = res(0)
         Dim btns As String = res(1)
         Dim script As String = "<script type=""text/javascript"">function updatePayment(type){getPaid2(" & TabCounter & ",'" & Replace(Fields, """", "|") & "',$('#net_total').val(),$('#net_credit').val(),type)};</script>"
@@ -2656,6 +2760,7 @@ Public Class Orders
 
     Public Function GetPaid(ByVal lngTransaction As Long, ByVal P_Cash As Decimal, ByVal P_SPAN As Decimal, ByVal PaymentType As Byte) As String
         Dim coveredCash, nonCoveredCash, TotalCashAmount As Decimal
+        Dim coveredVat, nonCoveredVat, TotalVatAmount As Decimal
         Dim CashItem, InsuranceItem As Integer
         Dim bCreatCash As Boolean
         Dim lngTransaction_2 As Long = 0 'For the second invoice if any
@@ -2665,16 +2770,18 @@ Public Class Orders
             Dim ds As DataSet
             ds = dcl.GetDS("SELECT ST.lngTransaction AS TransactionNo, ST.dateTransaction AS TransactionDate, ST.lngPatient AS PatientNo, P.strID AS PatientNationalID, P.strInsuranceNo AS PatientInsuranceNo, ST.strTransaction AS InvoiceNo, ST.dateEntry AS InvoiceDate, D.byteDepartment AS DepartmentNo, ST.strReference AS ClinicInvoiceNo, CASE WHEN ST.bCash = 1 THEN 'Cash' ELSE 'Insurance' END AS PaymentType, C2.lngContact AS CompanyNo, STA.strCreatedBy AS UserName, CASE WHEN ST.datePrepeare IS NULL THEN 0 ELSE 1 END AS TransactionStatus,bCreatCash FROM Stock_Trans AS ST LEFT JOIN Stock_Trans_Audit AS STA ON STA.lngTransaction = ST.lngTransaction INNER JOIN Hw_Patients AS P ON ST.lngPatient = P.lngPatient INNER JOIN Hw_Departments AS D ON ST.byteDepartment = D.byteDepartment INNER JOIN Hw_Contacts AS C1 ON ST.lngSalesman = C1.lngContact INNER JOIN Hw_Contacts AS C2 ON ST.lngContact = C2.lngContact WHERE ST.byteBase = 50 AND Year(ST.dateTransaction) = 2019 AND ST.lngTransaction = " & lngTransaction)
             Dim dsTemp, dsCovered, dsNonCovered As DataSet
-            dsCovered = dcl.GetDS("SELECT SUM(XI.curCoverage) AS Total, COUNT(XI.lngXlink) AS ItemCount FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink WHERE X.lngTransaction=" & lngTransaction)
+            dsCovered = dcl.GetDS("SELECT SUM(XI.curBasePrice) AS Total, SUM(XI.curVAT) AS TotalVat, COUNT(XI.lngXlink) AS ItemCount FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink WHERE X.lngTransaction=" & lngTransaction)
             coveredCash = dsCovered.Tables(0).Rows(0).Item("Total")
+            coveredVat = dsCovered.Tables(0).Rows(0).Item("TotalVat")
             InsuranceItem = dsCovered.Tables(0).Rows(0).Item("ItemCount")
             If IsDBNull(ds.Tables(0).Rows(0).Item("bCreatCash")) = True Or ds.Tables(0).Rows(0).Item("bCreatCash").ToString = "0" Then bCreatCash = False Else bCreatCash = True
             If bCreatCash = True Then
                 Dim lngXlink As Long = 0
                 dsTemp = dcl.GetDS("SELECT * FROM Stock_Trans WHERE strReference='" & ds.Tables(0).Rows(0).Item("ClinicInvoiceNo") & "' AND lngPatient=" & ds.Tables(0).Rows(0).Item("PatientNo") & " AND dateTransaction='" & CDate(ds.Tables(0).Rows(0).Item("TransactionDate")).ToString("yyyy-MM-dd") & "' AND bSubCash=1")
                 lngTransaction_2 = dsTemp.Tables(0).Rows(0).Item("lngTransaction")
-                dsNonCovered = dcl.GetDS("SELECT SUM(XI.curCoverage) AS Total, COUNT(XI.lngXlink) AS ItemCount FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink WHERE X.lngTransaction=" & lngTransaction_2)
+                dsNonCovered = dcl.GetDS("SELECT SUM(XI.curBasePrice) AS Total, SUM(XI.curVAT) AS TotalVat, COUNT(XI.lngXlink) AS ItemCount FROM Stock_Xlink_Items AS XI INNER JOIN Stock_Xlink AS X ON XI.lngXlink=X.lngXlink WHERE X.lngTransaction=" & lngTransaction_2)
                 nonCoveredCash = dsNonCovered.Tables(0).Rows(0).Item("Total")
+                nonCoveredVat = dsNonCovered.Tables(0).Rows(0).Item("TotalVat")
                 CashItem = dsNonCovered.Tables(0).Rows(0).Item("ItemCount")
             Else
                 nonCoveredCash = 0
@@ -2683,11 +2790,13 @@ Public Class Orders
             Return "Err:"
         End If
         TotalCashAmount = Math.Round((coveredCash + nonCoveredCash), byteCurrencyRound, MidpointRounding.AwayFromZero)
+        TotalVatAmount = Math.Round((coveredVat + nonCoveredVat), byteCurrencyRound, MidpointRounding.AwayFromZero)
 
         'validate payment with invoice
         If CashItem + InsuranceItem = 0 Then Return "Err:No items in this invoice!"
         If TotalCashAmount <> (coveredCash + nonCoveredCash) Then Return "Err:Something happened when calculate the invoice, please remove items then add them again!"
-        If TotalCashAmount < (P_SPAN + P_Cash) Then Return "Err:Payment dose not match the invoice total!"
+        If TotalVatAmount <> (coveredVat + nonCoveredVat) Then Return "Err:Something happened when calculate the invoice, please remove items then add them again!"
+        If (TotalCashAmount + TotalVatAmount) < (P_SPAN + P_Cash) Then Return "Err:Payment dose not match the invoice total!"
         ' Payment type
         '==> here must decide if the payment is CASH or SPAN or BOTH (do it later)
         'convert trans to invoice
@@ -2702,6 +2811,7 @@ Public Class Orders
         Dim body As New StringBuilder("")
         Dim lngTransaction As Long
         Dim coveredCash, deductionCash, nonCoveredCash As Decimal
+        Dim coveredVat, deductionVat, nonCoveredVat As Decimal
         Dim cashOnly As Boolean
 
         Select Case ByteLanguage
@@ -2738,6 +2848,12 @@ Public Class Orders
                     deductionCash = field(I).value()
                 Case "nonCoveredCash"
                     nonCoveredCash = field(I).value()
+                Case "coveredVat"
+                    coveredVat = field(I).value()
+                Case "deductionVat"
+                    deductionVat = field(I).value()
+                Case "nonCoveredVat"
+                    nonCoveredVat = field(I).value()
             End Select
         Next
         If lngTransaction = -1 Then lngTransaction = CLng("0" & result)
@@ -2745,21 +2861,26 @@ Public Class Orders
         ' Collect items
         Dim Items_Insurance, Items_Cash As New List(Of InvoiceItem)
         Dim Total_Insurance, Total_Cash, Total_All As Decimal
+        Dim Total_V_Insurance, Total_V_Cash, Total_V_All As Decimal
         If cashOnly = False Then
             Items_Insurance = getInvoiceItems(Fields, False)
             For Each item As InvoiceItem In Items_Insurance
                 Total_Insurance = Total_Insurance + item.UnitPrice
+                Total_V_Insurance = Total_V_Insurance + item.VAT
             Next
         End If
         Items_Cash = getInvoiceItems(Fields, True)
         For Each item As InvoiceItem In Items_Cash
             Total_Cash = Total_Cash + item.UnitPrice
+            Total_V_Cash = Total_V_Cash + item.VAT
         Next
         Total_All = Total_Insurance + Total_Cash
+        Total_V_All = Total_V_Insurance + Total_V_Cash
         'validate payment with invoice
         If Items_Cash.Count + Items_Insurance.Count = 0 Then Return "Err:No items in this invoice!"
         If Total_All <> (coveredCash + nonCoveredCash) Then Return "Err:Something happened when calculate the invoice, please remove items then add them again!"
-        If Total_All < (P_SPAN + P_Cash) Then Return "Err:Payment dose not match the invoice total!"
+        If Total_V_All <> (coveredVat + nonCoveredVat) Then Return "Err:Something happened when calculate the invoice, please remove items then add them again!"
+        If (Total_All + Total_V_All) < (P_SPAN + P_Cash) Then Return "Err:Payment dose not match the invoice total!"
         ' Payment type
         '==> here must decide if the payment is CASH or SPAN or BOTH (do it later)
         'convert trans to invoice
@@ -2920,6 +3041,7 @@ Public Class Orders
         Dim body As New StringBuilder("")
         Dim lngTransaction, returnTransaction As Long
         Dim coveredCash, deductionCash, nonCoveredCash As Decimal
+        Dim coveredVat, deductionVat, nonCoveredVat As Decimal
         Dim cashOnly As Boolean
 
         Select Case ByteLanguage
@@ -2944,26 +3066,37 @@ Public Class Orders
                     deductionCash = field(I).value()
                 Case "nonCoveredCash"
                     nonCoveredCash = field(I).value()
+                Case "coveredVat"
+                    coveredVat = field(I).value()
+                Case "deductionVat"
+                    deductionVat = field(I).value()
+                Case "nonCoveredVat"
+                    nonCoveredVat = field(I).value()
             End Select
         Next
         ' Collect items
         Dim Items_Insurance, Items_Cash As New List(Of InvoiceItem)
         Dim Total_Insurance, Total_Cash, Total_All As Decimal
+        Dim Total_V_Insurance, Total_V_Cash, Total_V_All As Decimal
         If cashOnly = False Then
             Items_Insurance = getInvoiceItems(Fields, False)
             For Each item As InvoiceItem In Items_Insurance
                 Total_Insurance = Total_Insurance + item.UnitPrice
+                Total_V_Insurance = Total_V_Insurance + item.VAT
             Next
         End If
         Items_Cash = getInvoiceItems(Fields, True)
         For Each item As InvoiceItem In Items_Cash
             Total_Cash = Total_Cash + item.UnitPrice
+            Total_V_Cash = Total_V_Cash + item.VAT
         Next
         Total_All = Total_Insurance + Total_Cash
+        Total_V_All = Total_V_Insurance + Total_V_Cash
 
         'validateion
         If Items_Cash.Count + Items_Insurance.Count = 0 Then Return "Err:No items in this invoice!"
         If Total_All <> (coveredCash + nonCoveredCash + deductionCash) Then Return "Err:Something happened when calculate the invoice, please remove items then add them again!"
+        If Total_V_All <> (coveredVat + nonCoveredVat + deductionVat) Then Return "Err:Something happened when calculate the invoice, please remove items then add them again!"
 
         'send to cashier
         If lngTransaction > 0 Then
@@ -3013,7 +3146,7 @@ Public Class Orders
                             'If dsXlinkItem.Tables(0).Rows.Count > 0 Then
                             'dcl.ExecScalar("UPDATE Stock_Xlink_Items SET bApproval=1 WHERE lngXlink=" & lngXlink & " AND strItem='" & item.Item & "'")
                             'Else
-                            dcl.ExecScalar("INSERT INTO Stock_Xlink_Items (lngXlink, intEntryNumber, byteDepartment, intService, strItem, byteUnit, byteQuantityType, curQuantity, dateExpiry, curBasePrice, curUnitPrice, curUnitNetPrice, curDiscount, curCoverage, curBaseDiscount, bCopied, byteWarehouse, dateEntry, strBarCode, strDose1, bApproval) VALUES(" & lngXlink & ", " & intEntryNumber & ", " & DepartmentNo & ", " & item.Service & ", '" & item.Item & "', " & item.Unit & ", 1, " & item.Quantity & ", '" & item.Expire.ToString("yyyy-MM-dd") & "', " & item.BasePrice & ", " & item.UnitPrice & ", NULL, " & item.Discount & ", " & item.Coverage & ", " & item.BaseDiscount & ", 0, " & item.Warehouse & ", '" & Today.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & item.Barcode & "','0000000000',1)")
+                            dcl.ExecScalar("INSERT INTO Stock_Xlink_Items (lngXlink, intEntryNumber, byteDepartment, intService, strItem, byteUnit, byteQuantityType, curQuantity, dateExpiry, curBasePrice, curUnitPrice, curUnitNetPrice, curDiscount, curCoverage, curBaseDiscount, bCopied, byteWarehouse, dateEntry, strBarCode, strDose1, bApproval, curVAT) VALUES(" & lngXlink & ", " & intEntryNumber & ", " & DepartmentNo & ", " & item.Service & ", '" & item.Item & "', " & item.Unit & ", 1, " & item.Quantity & ", '" & item.Expire.ToString("yyyy-MM-dd") & "', " & item.BasePrice & ", " & item.UnitPrice & ", NULL, " & item.Discount & ", " & item.Coverage & ", " & item.BaseDiscount & ", 0, " & item.Warehouse & ", '" & Today.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & item.Barcode & "','0000000000',1," & item.VAT & ")")
                             'End If
                             intEntryNumber = intEntryNumber + 1
                         Next
@@ -3073,7 +3206,7 @@ Public Class Orders
                             'If dsXlinkItem.Tables(0).Rows.Count > 0 Then
                             'dcl.ExecScalar("UPDATE Stock_Xlink_Items SET intEntryNumber=" & intEntryNumber & ", curQuantity=" & item.Quantity & ", dateExpiry='" & item.Expire.ToString("yyyy-MM-dd") & "', curBasePrice=" & item.BasePrice & ", curUnitPrice=" & item.UnitPrice & ", curUnitNetPrice=NULL, curDiscount=" & item.Discount & ", curCoverage=" & item.Coverage & ", curBaseDiscount=" & item.Discount & ", bApproval=1 WHERE lngXlink=" & lngXlink & " AND strItem='" & item.Item & "'")
                             'Else
-                            dcl.ExecScalar("INSERT INTO Stock_Xlink_Items (lngXlink, intEntryNumber, byteDepartment, intService, strItem, byteUnit, byteQuantityType, curQuantity, dateExpiry, curBasePrice, curUnitPrice, curUnitNetPrice, curDiscount, curCoverage, curBaseDiscount, bCopied, byteWarehouse, dateEntry, strBarCode, strDose1, bApproval) VALUES(" & lngXlink & ", " & intEntryNumber & ", " & DepartmentNo & ", " & item.Service & ", '" & item.Item & "', " & item.Unit & ", 1, " & item.Quantity & ", '" & item.Expire.ToString("yyyy-MM-dd") & "', " & item.BasePrice & ", " & item.UnitPrice & ", NULL, " & item.Discount & ", " & item.Coverage & ", " & item.BaseDiscount & ", 0, " & item.Warehouse & ", '" & Today.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & item.Barcode & "','0000000000',1)")
+                            dcl.ExecScalar("INSERT INTO Stock_Xlink_Items (lngXlink, intEntryNumber, byteDepartment, intService, strItem, byteUnit, byteQuantityType, curQuantity, dateExpiry, curBasePrice, curUnitPrice, curUnitNetPrice, curDiscount, curCoverage, curBaseDiscount, bCopied, byteWarehouse, dateEntry, strBarCode, strDose1, bApproval, curVAT) VALUES(" & lngXlink & ", " & intEntryNumber & ", " & DepartmentNo & ", " & item.Service & ", '" & item.Item & "', " & item.Unit & ", 1, " & item.Quantity & ", '" & item.Expire.ToString("yyyy-MM-dd") & "', " & item.BasePrice & ", " & item.UnitPrice & ", NULL, " & item.Discount & ", " & item.Coverage & ", " & item.BaseDiscount & ", 0, " & item.Warehouse & ", '" & Today.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & item.Barcode & "','0000000000',1, " & item.VAT & ")")
                             'End If
                             intEntryNumber = intEntryNumber + 1
                         Next
@@ -3122,7 +3255,7 @@ Public Class Orders
                         'If dsXlinkItem.Tables(0).Rows.Count > 0 Then
                         'dcl.ExecScalar("UPDATE Stock_Xlink_Items SET bApproval=1 WHERE lngXlink=" & lngXlink & " AND strItem='" & item.Item & "'")
                         'Else
-                        dcl.ExecScalar("INSERT INTO Stock_Xlink_Items (lngXlink, intEntryNumber, byteDepartment, intService, strItem, byteUnit, byteQuantityType, curQuantity, dateExpiry, curBasePrice, curUnitPrice, curUnitNetPrice, curDiscount, curCoverage, curBaseDiscount, bCopied, byteWarehouse, dateEntry, strBarCode, strDose1, bApproval) VALUES(" & lngXlink & ", " & intEntryNumber & ", " & byteDepartment_Cash & ", " & item.Service & ", '" & item.Item & "', " & item.Unit & ", 1, " & item.Quantity & ", '" & item.Expire.ToString("yyyy-MM-dd") & "', " & item.BasePrice & ", " & item.UnitPrice & ", NULL, " & item.Discount & ", " & item.Coverage & ", " & item.BaseDiscount & ", 0, " & item.Warehouse & ", '" & Today.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & item.Barcode & "','0000000000',1)")
+                        dcl.ExecScalar("INSERT INTO Stock_Xlink_Items (lngXlink, intEntryNumber, byteDepartment, intService, strItem, byteUnit, byteQuantityType, curQuantity, dateExpiry, curBasePrice, curUnitPrice, curUnitNetPrice, curDiscount, curCoverage, curBaseDiscount, bCopied, byteWarehouse, dateEntry, strBarCode, strDose1, bApproval, curVAT) VALUES(" & lngXlink & ", " & intEntryNumber & ", " & byteDepartment_Cash & ", " & item.Service & ", '" & item.Item & "', " & item.Unit & ", 1, " & item.Quantity & ", '" & item.Expire.ToString("yyyy-MM-dd") & "', " & item.BasePrice & ", " & item.UnitPrice & ", NULL, " & item.Discount & ", " & item.Coverage & ", " & item.BaseDiscount & ", 0, " & item.Warehouse & ", '" & Today.ToString("yyyy-MM-dd HH:mm:ss") & "', '" & item.Barcode & "','0000000000',1, " & item.VAT & ")")
                         'End If
                         intEntryNumber = intEntryNumber + 1
                     Next
