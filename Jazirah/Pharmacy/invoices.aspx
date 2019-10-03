@@ -421,8 +421,10 @@
       }
 
       function calculateAll(c) {
-          $('#totalCash' + c).html(parseFloat(parseFloat($('#coveredCash' + c).val()) + parseFloat($('#nonCoveredCash' + c).val())).toFixed(2));
-          $('#totalAll' + c).html(parseFloat(parseFloat($('#coveredCash' + c).val()) + parseFloat($('#nonCoveredCash' + c).val()) + parseFloat($('#deductionCash' + c).val())).toFixed(2));
+          $('#totalCash' + c).html(parseFloat((parseFloat($('#coveredCash' + c).val()) + parseFloat($('#nonCoveredCash' + c).val())), 10).toFixed(2));
+          if ($('#totalAll' + c)) $('#totalAll' + c).html(parseFloat(parseFloat($('#coveredCash' + c).val()) + parseFloat($('#nonCoveredCash' + c).val()) + parseFloat($('#deductionCash' + c).val())).toFixed(2));
+          if ($('#totalVat' + c)) $('#totalVat' + c).html(parseFloat((parseFloat($('#coveredVat' + c).val()) + parseFloat($('#nonCoveredVat' + c).val())), 10).toFixed(2));
+          if ($('#totalTotalVat' + c)) $('#totalTotalVat' + c).html(parseFloat(parseFloat($('#coveredVat' + c).val()) + parseFloat($('#nonCoveredVat' + c).val()) + parseFloat($('#deductionVat' + c).val())).toFixed(2));
       }
 
       function calculateInsurance(c) {
@@ -430,6 +432,11 @@
           var discount = 0;
           var total = 0;
           var cash = 0;
+          var tax_cnt = 0;
+          var tax_avg = 0;
+          var vat = 0;
+          var vat_C = 0;
+          var vat_I = 0;
           var coverage = 0;
 
           var limit = parseFloat($('#Limit_' + c).val());
@@ -446,6 +453,12 @@
               $.each($('.insurance' + c + ' .total_I'), function (k, v) {
                   total = total + parseFloat(v.value);
               });
+              $.each($('.insurance' + c + ' .vat_I'), function (k, v) {
+                  vat = vat + parseFloat(v.value);
+              });
+              var percent = (coverage * 100) / total;
+              vat_I = vat - (vat * (percent / 100));
+              vat_C = vat * (percent / 100);
               cash = coverage;
               if ((CIcov + MIcov + cash) > limit) {
                   Extra = (CIcov + MIcov + cash) - limit;
@@ -453,15 +466,21 @@
                   coverage = coverage + Extra;
               }
               $('#coveredCash' + c).val(parseFloat(cash, 10).toFixed(2));
+              $('#coveredVat' + c).val(parseFloat(vat_C, 10).toFixed(2));
               $('#total_I_' + c).html(parseFloat(total, 10).toFixed(2));
               $('#price_I_' + c).html(parseFloat(price, 10).toFixed(2));
+              if ($('#vat_I_' + c)) $('#vat_I_' + c).html(parseFloat(vat, 10).toFixed(2));
           } else {
               $('#coveredCash' + c).val(0);
+              $('#coveredVat' + c).val(0);
               $('#total_I_' + c).html("0.00");
               $('#price_I_' + c).html("0.00");
+              if ($('#vat_I_' + c)) $('#vat_I_' + c).html("0.00");
           }
           $('#totalCovered' + c).html(parseFloat(total - cash, 10).toFixed(2));
+          $('#totalCoveredVat' + c).html(parseFloat(vat_I, 10).toFixed(2));
           $('#deductionCash' + c).val(parseFloat(total - cash, 10).toFixed(2));
+          $('#deductionVat' + c).val(parseFloat(vat_I, 10).toFixed(2));
 
           $('#covInfo' + c).html('<i class="icon-user4" title="Patient Payment"></i> ' + parseFloat(coverage).toFixed(2) + ' + <i class="icon-building-o" title="Company Payment"></i> ' + parseFloat(total - coverage).toFixed(2));
           $('#basePrice' + c).val(parseFloat($('#coveredCash' + c).val()) + parseFloat($('#deductionCash' + c).val()));
@@ -472,6 +491,8 @@
           var price = 0;
           var discount = 0;
           var total = 0;
+          var tax = 0;
+          var vat = 0;
           var coverage = 0;
 
           if ($('.cash' + c + ' .total_C').length > 0) {
@@ -481,23 +502,22 @@
               $.each($('.cash' + c + ' .total_C'), function (k, v) {
                   total = total + parseFloat(v.value);
               });
+              $.each($('.cash' + c + ' .vat_C'), function (k, v) {
+                  vat = vat + parseFloat(v.value);
+              });
               $('#nonCoveredCash' + c).val(parseFloat(total, 10).toFixed(2));
               $('#total_C_' + c).html(parseFloat(total, 10).toFixed(2));
               $('#price_C_' + c).html(parseFloat(price, 10).toFixed(2));
+              if ($('#vat_C_' + c)) $('#vat_C_' + c).html(parseFloat(vat, 10).toFixed(2));
+              if ($('#nonCoveredVat' + c)) $('#nonCoveredVat' + c).val(parseFloat(vat, 10).toFixed(2));
           } else {
               $('#nonCoveredCash' + c).val(0);
               $('#total_C_' + c).html("0.00");
               $('#price_C_' + c).html("0.00");
+              if ($('#vat_C_' + c)) $('#vat_C_' + c).html("0.00");
+              if ($('#nonCoveredVat' + c)) $('#nonCoveredVat' + c).val(0);
           }
 
-          //if ($('.coverage').length > 0) {
-          //    $.each($('.coverage'), function (k, v) {
-          //        coverage = coverage + parseFloat(v.value);
-          //    });
-          //    $('#totalCovered' + c).html(parseFloat(coverage, 10).toFixed(2));
-          //} else {
-          //    $('#totalCovered' + c).html('0.00');
-          //}
           calculateAll(c);
       }
 
