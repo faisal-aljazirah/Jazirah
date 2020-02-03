@@ -1,0 +1,12 @@
+D:\Projects\Jazirah\Core\bin\Debug\Core.dll
+D:\Projects\Jazirah\Core\bin\Debug\Core.pdb
+D:\Projects\Jazirah\Core\bin\Debug\Core.xml
+D:\Projects\Jazirah\Core\bin\Debug\DCL.dll
+D:\Projects\Jazirah\Core\bin\Debug\DCL.pdb
+D:\Projects\Jazirah\Core\bin\Debug\DCL.xml
+D:\Projects\Jazirah\Core\obj\Debug\Core.vbprojResolveAssemblyReference.cache
+D:\Projects\Jazirah\Core\obj\Debug\Core.Resources.resources
+D:\Projects\Jazirah\Core\obj\Debug\Core.vbproj.GenerateResource.Cache
+D:\Projects\Jazirah\Core\obj\Debug\Core.dll
+D:\Projects\Jazirah\Core\obj\Debug\Core.xml
+D:\Projects\Jazirah\Core\obj\Debug\Core.pdb

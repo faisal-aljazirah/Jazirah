@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<UI>
+  <Application Enabled="1">
+    <ID>1</ID>
+    <NameAr>الصيدلية</NameAr>
+    <NameEn>Pharmacy</NameEn>
+    <Folder>Pharmacy</Folder>
+    <Icon>icon-medkit</Icon>
+    <Order>1</Order>
+  </Application>
+  <Application Enabled="0">
+    <ID>2</ID>
+    <NameAr>تقنية المعلومات</NameAr>
+    <NameEn>Information Technology</NameEn>
+    <Folder>IT</Folder>
+    <Icon>icon-medkit</Icon>
+    <Order>2</Order>
+  </Application>
+  <Application Enabled="1">
+    <ID>3</ID>
+    <NameAr>المخزون</NameAr>
+    <NameEn>Stock</NameEn>
+    <Folder>Stock</Folder>
+    <Icon>icon-truck2</Icon>
+    <Order>3</Order>
+  </Application>
+  <Application Enabled="1">
+    <ID>4</ID>
+    <NameAr>العيادة</NameAr>
+    <NameEn>Clinic</NameEn>
+    <Folder>Clinic</Folder>
+    <Icon>icon-truck2</Icon>
+    <Order>3</Order>
+  </Application>
+  <Application Enabled="1">
+    <ID>0</ID>
+    <NameAr>لوحة التحكم</NameAr>
+    <NameEn>Control Panel</NameEn>
+    <Folder>CP</Folder>
+    <Icon>icon-database2</Icon>
+    <Order>0</Order>
+  </Application>
+  <Section>
+    <ID>1</ID>
+    <App>1</App>
+    <NameAr>المرضى الخارجي</NameAr>
+    <NameEn>Out Patient</NameEn>
+    <Order>1</Order>
+  </Section>
+  <Section>
+    <ID>2</ID>
+    <App>3</App>
+    <NameAr>المخزون</NameAr>
+    <NameEn>Stock</NameEn>
+    <Order>1</Order>
+  </Section>
+  <Section>
+    <ID>3</ID>
+    <App>4</App>
+    <NameAr>المرضى الخارجي</NameAr>
+    <NameEn>Out Patient</NameEn>
+    <Order>1</Order>
+  </Section>
+  <Menu Enabled="1">
+    <ID>1</ID>
+    <Section>1</Section>
+    <NameAr>المبيعات</NameAr>
+    <NameEn>Sales</NameEn>
+    <File></File>
+    <Icon>icon-medkit2</Icon>
+    <Parent>0</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>2</ID>
+    <Section>1</Section>
+    <NameAr>طلبات الأدوية</NameAr>
+    <NameEn>Medicines Orders</NameEn>
+    <File>sales.aspx</File>
+    <Icon></Icon>
+    <Parent>1</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>3</ID>
+    <Section>1</Section>
+    <NameAr>الصندوق</NameAr>
+    <NameEn>Cashier</NameEn>
+    <File></File>
+    <Icon>icon-money</Icon>
+    <Parent>0</Parent>
+    <Order>2</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>4</ID>
+    <Section>1</Section>
+    <NameAr>طلبات الصندوق</NameAr>
+    <NameEn>Cashier Orders</NameEn>
+    <File>cashier.aspx</File>
+    <Icon></Icon>
+    <Parent>3</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>5</ID>
+    <Section>1</Section>
+    <NameAr>فواتير المبيعات</NameAr>
+    <NameEn>Sales Invoices</NameEn>
+    <File>invoices.aspx</File>
+    <Icon></Icon>
+    <Parent>3</Parent>
+    <Order>2</Order>
+  </Menu>
+  <Menu Enabled="0">
+    <ID>6</ID>
+    <Section>1</Section>
+    <NameAr>الفواتير الملغية</NameAr>
+    <NameEn>Cancelled Invoices</NameEn>
+    <File>cancelled.aspx</File>
+    <Icon></Icon>
+    <Parent>3</Parent>
+    <Order>3</Order>
+  </Menu>
+  <Menu Enabled="0">
+    <ID>7</ID>
+    <Section>1</Section>
+    <NameAr>الأصناف المرتجعة</NameAr>
+    <NameEn>Returned Items</NameEn>
+    <File>returns.aspx</File>
+    <Icon></Icon>
+    <Parent>3</Parent>
+    <Order>4</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>8</ID>
+    <Section>1</Section>
+    <NameAr>المخزون</NameAr>
+    <NameEn>Stock</NameEn>
+    <File></File>
+    <Icon>icon-truck2</Icon>
+    <Parent>0</Parent>
+    <Order>3</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>9</ID>
+    <Section>1</Section>
+    <NameAr>الرصيد</NameAr>
+    <NameEn>Balance</NameEn>
+    <File>balance.aspx</File>
+    <Icon></Icon>
+    <Parent>8</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>10</ID>
+    <Section>1</Section>
+    <NameAr>المجرد</NameAr>
+    <NameEn>Inventory</NameEn>
+    <File>inventory.aspx</File>
+    <Icon></Icon>
+    <Parent>8</Parent>
+    <Order>2</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>11</ID>
+    <Section>1</Section>
+    <NameAr>التقارير</NameAr>
+    <NameEn>Reports</NameEn>
+    <File></File>
+    <Icon>icon-file-text-o</Icon>
+    <Parent>0</Parent>
+    <Order>4</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>12</ID>
+    <Section>1</Section>
+    <NameAr>تقرير المبيعات</NameAr>
+    <NameEn>Sales Report</NameEn>
+    <File>r_sales.aspx</File>
+    <Icon></Icon>
+    <Parent>11</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>13</ID>
+    <Section>1</Section>
+    <NameAr>تقرير المدفوعات</NameAr>
+    <NameEn>Payment Report</NameEn>
+    <File>r_cash.aspx</File>
+    <Icon></Icon>
+    <Parent>11</Parent>
+    <Order>2</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>14</ID>
+    <Section>1</Section>
+    <NameAr>تقرير الأصناف</NameAr>
+    <NameEn>Items Report</NameEn>
+    <File>r_credit.aspx</File>
+    <Icon></Icon>
+    <Parent>11</Parent>
+    <Order>3</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>15</ID>
+    <Section>2</Section>
+    <NameAr>المستودع</NameAr>
+    <NameEn>Warehouse</NameEn>
+    <File></File>
+    <Icon>icon-medkit2</Icon>
+    <Parent>0</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>16</ID>
+    <Section>2</Section>
+    <NameAr>الأصناف</NameAr>
+    <NameEn>Items</NameEn>
+    <File>items.aspx</File>
+    <Icon></Icon>
+    <Parent>15</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>17</ID>
+    <Section>2</Section>
+    <NameAr>المخزون</NameAr>
+    <NameEn>Stock</NameEn>
+    <File></File>
+    <Icon>icon-truck2</Icon>
+    <Parent>0</Parent>
+    <Order>3</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>18</ID>
+    <Section>2</Section>
+    <NameAr>الرصيد</NameAr>
+    <NameEn>Balance</NameEn>
+    <File>balance.aspx</File>
+    <Icon></Icon>
+    <Parent>17</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>19</ID>
+    <Section>2</Section>
+    <NameAr>تحويل أصناف</NameAr>
+    <NameEn>Transfare Items</NameEn>
+    <File>transfer.aspx</File>
+    <Icon></Icon>
+    <Parent>17</Parent>
+    <Order>2</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>20</ID>
+    <Section>2</Section>
+    <NameAr>طلبات التحويل</NameAr>
+    <NameEn>Transfare Requests</NameEn>
+    <File>requests.aspx</File>
+    <Icon></Icon>
+    <Parent>17</Parent>
+    <Order>3</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>21</ID>
+    <Section>2</Section>
+    <NameAr>إتلاف أصناف</NameAr>
+    <NameEn>Wastage Items</NameEn>
+    <File>wastage.aspx</File>
+    <Icon></Icon>
+    <Parent>17</Parent>
+    <Order>4</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>22</ID>
+    <Section>2</Section>
+    <NameAr>الموردين</NameAr>
+    <NameEn>Suppliers</NameEn>
+    <File>suppliers.aspx</File>
+    <Icon></Icon>
+    <Parent>15</Parent>
+    <Order>2</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>24</ID>
+    <Section>2</Section>
+    <NameAr>التقارير</NameAr>
+    <NameEn>Reports</NameEn>
+    <File></File>
+    <Icon>icon-file-text-o</Icon>
+    <Parent>0</Parent>
+    <Order>3</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>25</ID>
+    <Section>2</Section>
+    <NameAr>تقرير الأصناف</NameAr>
+    <NameEn>Items Report</NameEn>
+    <File>r_items.aspx</File>
+    <Icon></Icon>
+    <Parent>24</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>26</ID>
+    <Section>2</Section>
+    <NameAr>مرتجعات المبيعات</NameAr>
+    <NameEn>Sales Returns</NameEn>
+    <File>returns.aspx</File>
+    <Icon></Icon>
+    <Parent>17</Parent>
+    <Order>3</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>27</ID>
+    <Section>2</Section>
+    <NameAr>تعليق المنتهي</NameAr>
+    <NameEn>Suspend Expired</NameEn>
+    <File>suspend_expired.aspx</File>
+    <Icon></Icon>
+    <Parent>17</Parent>
+    <Order>2</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>28</ID>
+    <Section>2</Section>
+    <NameAr>تعليق المرتجع</NameAr>
+    <NameEn>Suspend Returned</NameEn>
+    <File>suspend_returned.aspx</File>
+    <Icon></Icon>
+    <Parent>17</Parent>
+    <Order>4</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>29</ID>
+    <Section>1</Section>
+    <NameAr>الطلبات</NameAr>
+    <NameEn>Orders</NameEn>
+    <File>orders.aspx</File>
+    <Icon></Icon>
+    <Parent>1</Parent>
+    <Order>2</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>30</ID>
+    <Section>1</Section>
+    <NameAr>التحضير</NameAr>
+    <NameEn>Prepare</NameEn>
+    <File>prepare.aspx</File>
+    <Icon></Icon>
+    <Parent>1</Parent>
+    <Order>3</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>31</ID>
+    <Section>1</Section>
+    <NameAr>الدفع</NameAr>
+    <NameEn>Checkout</NameEn>
+    <File>checkout.aspx</File>
+    <Icon></Icon>
+    <Parent>1</Parent>
+    <Order>4</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>32</ID>
+    <Section>3</Section>
+    <NameAr>المرضى</NameAr>
+    <NameEn>Patients</NameEn>
+    <File></File>
+    <Icon>icon-medkit2</Icon>
+    <Parent>0</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>33</ID>
+    <Section>3</Section>
+    <NameAr>زيارات المرضى</NameAr>
+    <NameEn>Patients' Visits</NameEn>
+    <File>visits.aspx</File>
+    <Icon></Icon>
+    <Parent>32</Parent>
+    <Order>1</Order>
+  </Menu>
+</UI>

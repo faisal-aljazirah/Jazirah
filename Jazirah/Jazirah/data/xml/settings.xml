@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Settings>
+  <Pharmacy>
+    <intYear>2020</intYear>
+    <intStartupFY>2017</intStartupFY>
+    <byteLocalCurrency>3</byteLocalCurrency>
+    <byteCurrencyRound>2</byteCurrencyRound>
+    <byteDepartment_Cash>15</byteDepartment_Cash>
+    <lngContact_Cash>27</lngContact_Cash>
+    <lngSalesman_Cash>395</lngSalesman_Cash>
+    <lngPatient_Cash>16</lngPatient_Cash>
+    <ChangeQuantity_Cash>False</ChangeQuantity_Cash>
+    <ChangeQuantity_Insurance>False</ChangeQuantity_Insurance>
+    <AddDiscount_Cash>False</AddDiscount_Cash>
+    <AddDiscount_Insurance>False</AddDiscount_Insurance>
+    <AllowExtraItem_Insurance>False</AllowExtraItem_Insurance>
+    <Auto_MoveRejectedToCash_Insurance>False</Auto_MoveRejectedToCash_Insurance>
+    <AskBeforeSend>True</AskBeforeSend>
+    <AskBeforeReturn>True</AskBeforeReturn>
+    <OnePaymentForCashier>False</OnePaymentForCashier>
+    <ForcePaymentOnCloseInvoice>True</ForcePaymentOnCloseInvoice>
+    <DirectCancelInvoic>False</DirectCancelInvoic>
+    <SusbendMax>0</SusbendMax>
+    <byteInvoicesLimitDay>1</byteInvoicesLimitDay>
+    <OrdersLimitDays>7</OrdersLimitDays>
+    <CancelLimitDays>4</CancelLimitDays>
+    <DaysToCalculateMedicalInvoices>7</DaysToCalculateMedicalInvoices>
+    <DaysToCalculateMedicineInvoices>7</DaysToCalculateMedicineInvoices>
+    <TaxEnabled>True</TaxEnabled>
+    <PopupToPrint>False</PopupToPrint>
+    <PrintDose>3</PrintDose>
+    <PrintInvoice>2</PrintInvoice>
+    <DosePrinter>ZDesigner GK420t</DosePrinter>
+    <InvoicePrinter>EPSON LQ-350 ESC/P2</InvoicePrinter>
+    <OneQuantityPerItem>True</OneQuantityPerItem>
+    <SalesmanType>2</SalesmanType>
+  </Pharmacy>
+</Settings>

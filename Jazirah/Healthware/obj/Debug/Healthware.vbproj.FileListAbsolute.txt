@@ -1,0 +1,12 @@
+D:\Projects\Jazirah\Healthware\bin\Debug\Healthware.dll
+D:\Projects\Jazirah\Healthware\bin\Debug\Healthware.pdb
+D:\Projects\Jazirah\Healthware\bin\Debug\Healthware.xml
+D:\Projects\Jazirah\Healthware\bin\Debug\DCL.dll
+D:\Projects\Jazirah\Healthware\bin\Debug\DCL.pdb
+D:\Projects\Jazirah\Healthware\bin\Debug\DCL.xml
+D:\Projects\Jazirah\Healthware\obj\Debug\Healthware.vbprojResolveAssemblyReference.cache
+D:\Projects\Jazirah\Healthware\obj\Debug\Healthware.Resources.resources
+D:\Projects\Jazirah\Healthware\obj\Debug\Healthware.vbproj.GenerateResource.Cache
+D:\Projects\Jazirah\Healthware\obj\Debug\Healthware.dll
+D:\Projects\Jazirah\Healthware\obj\Debug\Healthware.xml
+D:\Projects\Jazirah\Healthware\obj\Debug\Healthware.pdb

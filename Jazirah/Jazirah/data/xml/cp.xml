@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<UI>
+  <Application Enabled="1">
+    <ID>1</ID>
+    <NameAr>الصيدلية</NameAr>
+    <NameEn>Pharmacy</NameEn>
+    <Folder>Pharmacy</Folder>
+    <Icon>icon-medkit</Icon>
+    <Order>1</Order>
+  </Application>
+  <Application Enabled="0">
+    <ID>2</ID>
+    <NameAr>تقنية المعلومات</NameAr>
+    <NameEn>Information Technology</NameEn>
+    <Folder>IT</Folder>
+    <Icon>icon-medkit</Icon>
+    <Order>2</Order>
+  </Application>
+  <Application Enabled="1">
+    <ID>3</ID>
+    <NameAr>المخزون</NameAr>
+    <NameEn>Stock</NameEn>
+    <Folder>Stock</Folder>
+    <Icon>icon-truck2</Icon>
+    <Order>3</Order>
+  </Application>
+  <Application Enabled="1">
+    <ID>0</ID>
+    <NameAr>لوحة التحكم</NameAr>
+    <NameEn>Control Panel</NameEn>
+    <Folder>CP</Folder>
+    <Icon>icon-database2</Icon>
+    <Order>0</Order>
+  </Application>
+  <Section>
+    <ID>1</ID>
+    <App>0</App>
+    <NameAr>إعدادات البرامج</NameAr>
+    <NameEn>Applications Settings</NameEn>
+    <Order>1</Order>
+  </Section>
+  <Menu Enabled="1">
+    <ID>1</ID>
+    <Section>1</Section>
+    <NameAr>النظام الصحي</NameAr>
+    <NameEn>Healthware</NameEn>
+    <File></File>
+    <Icon></Icon>
+    <Parent>0</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>2</ID>
+    <Section>1</Section>
+    <NameAr>الصيدلية</NameAr>
+    <NameEn>Pharmacy</NameEn>
+    <File>s_pharmacy.aspx</File>
+    <Icon>icon-medkit2</Icon>
+    <Parent>1</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>3</ID>
+    <Section>1</Section>
+    <NameAr>المخزون</NameAr>
+    <NameEn>Stock</NameEn>
+    <File>s_stock.aspx</File>
+    <Icon>icon-truck2</Icon>
+    <Parent>1</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Section>
+    <ID>2</ID>
+    <App>0</App>
+    <NameAr>الملفات الرئيسية</NameAr>
+    <NameEn>Master Files</NameEn>
+    <Order>2</Order>
+  </Section>
+  <Menu Enabled="1">
+    <ID>4</ID>
+    <Section>2</Section>
+    <NameAr>النظام الصحي</NameAr>
+    <NameEn>Healthware</NameEn>
+    <File></File>
+    <Icon></Icon>
+    <Parent>0</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>5</ID>
+    <Section>2</Section>
+    <NameAr>الأقسام</NameAr>
+    <NameEn>Departments</NameEn>
+    <File>departments.aspx</File>
+    <Icon></Icon>
+    <Parent>4</Parent>
+    <Order>1</Order>
+  </Menu>
+  <Menu Enabled="1">
+    <ID>6</ID>
+    <Section>2</Section>
+    <NameAr>الخدمات</NameAr>
+    <NameEn>Services</NameEn>
+    <File>services.aspx</File>
+    <Icon></Icon>
+    <Parent>4</Parent>
+    <Order>2</Order>
+  </Menu>
+</UI>

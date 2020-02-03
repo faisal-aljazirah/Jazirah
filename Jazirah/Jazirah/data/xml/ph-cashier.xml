@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Cashiers>
+  <Cashier>
+    <No>1</No>
+    <User></User>
+  </Cashier>
+  <Cashier>
+    <No>2</No>
+    <User></User>
+  </Cashier>
+  <Cashier>
+    <No>3</No>
+    <User></User>
+  </Cashier>
+  <Cashier>
+    <No>4</No>
+    <User></User>
+  </Cashier>
+  <Cashier>
+    <No>5</No>
+    <User></User>
+  </Cashier>
+  <Cashier>
+    <No>6</No>
+    <User></User>
+  </Cashier>
+</Cashiers>

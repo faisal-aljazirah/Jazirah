@@ -1,0 +1,8 @@
+D:\Projects\Jazirah\DCL\obj\Debug\DCL.Resources.resources
+D:\Projects\Jazirah\DCL\obj\Debug\DCL.vbproj.GenerateResource.Cache
+D:\Projects\Jazirah\DCL\bin\Debug\DCL.dll
+D:\Projects\Jazirah\DCL\bin\Debug\DCL.pdb
+D:\Projects\Jazirah\DCL\bin\Debug\DCL.xml
+D:\Projects\Jazirah\DCL\obj\Debug\DCL.dll
+D:\Projects\Jazirah\DCL\obj\Debug\DCL.xml
+D:\Projects\Jazirah\DCL\obj\Debug\DCL.pdb

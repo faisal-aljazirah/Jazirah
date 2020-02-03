@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Permissions>
+  <Applications>
+    <User ID="faisal">
+      <Menu>*</Menu>
+    </User>
+    <User ID="ghadeer">
+      <Menu>*</Menu>
+    </User>
+    <User ID="AHMED">
+      <Menu>1</Menu>
+    </User>
+    <User ID="هشام">
+      <Menu>1</Menu>
+    </User>
+    <User ID="alaa">
+      <Menu>1</Menu>
+    </User>
+  </Applications>
+  <Menus>
+    <User ID="faisal">
+      <Menu>*</Menu>
+    </User>
+    <User ID="ghadeer">
+      <Menu>*</Menu>
+    </User>
+    <User ID="AHMED">
+      <Menu>2</Menu>
+      <Menu>4</Menu>
+      <Menu>5</Menu>
+      <Menu>6</Menu>
+      <Menu>7</Menu>
+    </User>
+    <User ID="هشام">
+      <Menu>2</Menu>
+      <Menu>4</Menu>
+      <Menu>5</Menu>
+      <Menu>6</Menu>
+      <Menu>7</Menu>
+    </User>
+    <User ID="alaa">
+      <Menu>2</Menu>
+      <Menu>4</Menu>
+      <Menu>5</Menu>
+      <Menu>6</Menu>
+      <Menu>7</Menu>
+    </User>
+  </Menus>
+  <Actions>
+    <Application ID="1">
+      <User ID="faisal">
+        <Action>*</Action>
+      </User>
+      <User ID="ghadeer">
+        <Action>*</Action>
+      </User>
+      <User ID="AHMED">
+        <Action>1</Action>
+        <Action>2</Action>
+        <Action>3</Action>
+      </User>
+      <User ID="هشام">
+        <Action>1</Action>
+        <Action>2</Action>
+        <Action>3</Action>
+      </User>
+      <User ID="alaa">
+        <Action>1</Action>
+        <Action>2</Action>
+        <Action>3</Action>
+      </User>
+    </Application>
+  </Actions>
+  <Warehouses>
+    <User ID="faisal">
+      <Default>3</Default>
+      <Balance>*</Balance>
+      <Returned>*</Returned>
+      <Expired>*</Expired>
+      <Transfer>*</Transfer>
+      <Suspend_Expired>*</Suspend_Expired>
+      <Suspend_Returned>*</Suspend_Returned>
+    </User>
+    <User ID="ghadeer">
+      <Default>3</Default>
+      <Balance>2</Balance>
+      <Transfer>2</Transfer>
+      <Transfer>3</Transfer>
+      <Suspend_Expired>2</Suspend_Expired>
+      <Suspend_Returned>2</Suspend_Returned>
+    </User>
+    <User ID="AHMED">
+      <Default>3</Default>
+      <Balance>3</Balance>
+      <Transfer>3</Transfer>
+    </User>
+  </Warehouses>
+</Permissions>

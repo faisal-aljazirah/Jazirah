@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Pharmacy
+</name>
+</assembly>
+<members>
+<member name="M:Pharmacy.Functions.CheckItemCoverage(System.Int64,System.Int64,System.Byte,System.String,System.Decimal,System.Decimal,System.DateTime,System.Int64,System.Decimal)">
+	<summary>
+ Check the item not exceeded the <para/> limitation of coverage of insurance company
+ </summary>
+	<remarks>
+ Created by Faisal Al-Aseery 08-2019 Version: 1.0
+ </remarks>
+	<returns>Nothing if not exceeded, Otherwise will return Error as string</returns>
+	<param name="lngTransaction">The transaction ID.</param>
+	<param name="strItem">The item ID.</param>
+	<param name="curBasePrice">The base price of the item</param>
+</member><member name="P:Pharmacy.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Pharmacy.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:Pharmacy.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

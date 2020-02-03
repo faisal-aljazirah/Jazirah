@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Options>
+  <General user="faisal">
+    <StartPage>/Stock/item.aspx</StartPage>
+  </General>
+  <Reports user="faisal" app="1">
+    <Report name="Standard Report">{reportname: 'Standard Report',createuser: 'faisal',createdate: '2019-11-14',filter: {invoice: {datetype: 1,datefrom: '2019-12-06',dateto: '2019-12-06',numbertype: 1,numberfactor: '',numbervalue: '',invoicetype: 2,invoicestatus: [1,2]},department: {},doctor: {},company: {compnayid: []},user: {}},columns: [1, 2, 12, 7, 8, 9, 10, 17, 18],result: {grouping: [11],sorting: [{ col: 0, sort: 'asc' }],viewing: 1}}</Report>
+    <Report name="Credit Invoices Report">{reportname: 'Credit Invoices Report',createuser: 'faisal',createdate: '2019-11-14',filter: {invoice: {datetype: 3,datefrom: '2019-12-06',dateto: '2019-12-06',numbertype: 1,numberfactor: '',numbervalue: '',invoicetype: 2,invoicestatus: [1,2]},department: {},doctor: {},company: {compnayid: []},user: {}},columns: [1, 2, 12, 7, 8, 9, 10, 17, 18],result: {grouping: [11],sorting: [{ col: 0, sort: 'asc' }],viewing: 1}}</Report>
+  </Reports>
+</Options>

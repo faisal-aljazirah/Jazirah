@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Privileges>
+  <Pharmacy>
+    <Admin>
+      <User>faisal</User>
+      <User>ghadeer</User>
+    </Admin>
+  </Pharmacy>
+  <Stock>
+    <Admin>
+      <User>faisal</User>
+      <User>ghadeer</User>
+    </Admin>
+  </Stock>
+  <Cancel_Invoice>
+    <User>faisal</User>
+    <User>AHMED</User>
+    <User>SoftNet</User>
+  </Cancel_Invoice>
+  <Return_Items>
+    <User>faisal</User>
+    <User>ghadeer</User>
+    <User>AHMED</User>
+    <User>SoftNet</User>
+  </Return_Items>
+  <Reopen_Invoice>
+    <User>faisal</User>
+    <User>ghadeer</User>
+    <User>AHMED</User>
+    <User>SoftNet</User>
+  </Reopen_Invoice>
+  <System_Admin>
+    <User>faisal</User>
+    <User>ghadeer</User>    
+  </System_Admin>
+  <Approve_Transfer>
+    <User>faisal</User>
+    <User>ghadeer</User>
+  </Approve_Transfer>
+  <Cancel_Transfer>
+    <User>faisal</User>
+    <User>ghadeer</User>
+  </Cancel_Transfer>
+</Privileges>
