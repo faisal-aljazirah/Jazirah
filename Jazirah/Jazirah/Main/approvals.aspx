@@ -9,7 +9,7 @@
             <div class="card-body collapse in">
                 <div class="table-responsive p-1">
                     <h3><%=lblCancelRequests%></h3>
-                    <table class="table tablelist table-bordered">
+                    <table class="table tablelist1 table-bordered">
                         <thead>
                             <tr>
 					          <th><%=colInvoice %></th>
@@ -56,7 +56,7 @@
             <div class="card-body collapse in">
                 <div class="table-responsive p-1">
                     <h3><%=lblReturnRequests%></h3>
-                    <table class="table tablelist table-bordered">
+                    <table class="table tablelist2 table-bordered">
                         <thead>
                             <tr>
 					          <th><%=colInvoice %></th>
@@ -102,7 +102,7 @@
             <div class="card-body collapse in">
                 <div class="table-responsive p-1">
                     <h3><%=lblReopenRequests%></h3>
-                    <table class="table tablelist table-bordered">
+                    <table class="table tablelist3 table-bordered">
                         <thead>
                             <tr>
 					          <th><%=colInvoice %></th>
