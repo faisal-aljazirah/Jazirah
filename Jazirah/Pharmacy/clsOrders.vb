@@ -1266,9 +1266,24 @@ Public Class Orders
         '2===>
         Dim curQty As Decimal
         If ItemType > 0 Then curQty = 0 Else curQty = curQuantity ' only when moving item => avoid duplicate quantity
-        If func.checkStock(strItem, curQty, dateTransaction, byteWarehouse, SelectedInsuranceItems, SelectedCashItems) = False Then
+
+        Dim Count As Integer = 0
+        Dim I_items As String() = Split(SelectedInsuranceItems, ",")
+        For Each item As String In I_items
+            If item = strItem Then Count = Count + 1
+        Next
+
+        Dim C_items As String() = Split(SelectedCashItems, ",")
+        For Each item As String In C_items
+            If item = strItem Then Count = Count + 1
+        Next
+
+        If func.checkStock(strItem, dateTransaction, byteWarehouse, dateExpiry) - (curQty + Count) < 0 Then
             Return "Err:No balance of this item."
         End If
+        'If func.checkStock(strItem, curQty, dateTransaction, byteWarehouse, SelectedInsuranceItems, SelectedCashItems) = False Then
+        '    Return "Err:No balance of this item."
+        'End If
 
         '3====> Custom invoice (Moving Item)
         AutoPrint = True
